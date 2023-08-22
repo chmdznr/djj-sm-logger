@@ -25,6 +25,38 @@
                 </a>
             </li>
         @endcan
+        @can('pembacaan_sensor_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/iot-readings*") ? "c-show" : "" }} {{ request()->is("admin/sm-readings*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-database c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.pembacaanSensor.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('iot_reading_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.iot-readings.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/iot-readings") || request()->is("admin/iot-readings/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-microchip c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.iotReading.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('sm_reading_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.sm-readings.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/sm-readings") || request()->is("admin/sm-readings/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-diagnoses c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.smReading.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
         @can('user_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }} {{ request()->is("admin/audit-logs*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -71,38 +103,6 @@
 
                                 </i>
                                 {{ trans('cruds.auditLog.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-        @can('pembacaan_sensor_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/iot-readings*") ? "c-show" : "" }} {{ request()->is("admin/sm-readings*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-database c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.pembacaanSensor.title') }}
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('iot_reading_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.iot-readings.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/iot-readings") || request()->is("admin/iot-readings/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-microchip c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.iotReading.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('sm_reading_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.sm-readings.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/sm-readings") || request()->is("admin/sm-readings/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-diagnoses c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.smReading.title') }}
                             </a>
                         </li>
                     @endcan
