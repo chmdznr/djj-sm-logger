@@ -1,0 +1,82 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Pregnancy Api",
+        "description": "Deskripsi API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "Pregnancy API Server"
+        }
+    ],
+    "paths": {
+        "/iot_reading": {
+            "get": {
+                "tags": [
+                    "IOT Reading"
+                ],
+                "summary": "Get iot_reading data",
+                "operationId": "71cff0614b8d10c53912c93757c208fc",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "respondent_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "respondent_name": {
+                                                        "type": "string",
+                                                        "example": "Feliona"
+                                                    },
+                                                    "fetal_hr": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "resp_count": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token. \n *     Input the token without 'Bearer' prefix.",
+                "name": "Authorization",
+                "in": "header",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
