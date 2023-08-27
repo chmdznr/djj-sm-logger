@@ -13,12 +13,108 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SmReadingApiController extends Controller
 {
+    /**
+     * @OA\Get(
+     *     path="/sm-readings",
+     *     summary="Get smarwatch reading data",
+     *     tags={"SM Reading"},
+     *     @OA\Response(response="200", description="Success",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="data", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="fetal_hr", type="integer", example=99),
+     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            @OA\Property(property="responden_id", type="integer", example=1),
+     *         @OA\Property(property="responden", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="nama", type="string", example="Valerica"),
+     *            @OA\Property(property="kode", type="string", example="ES101"),
+     *            @OA\Property(property="usia", type="integer", example=29),
+     *            @OA\Property(property="his_adekuat", type="string", example="0"),
+     *            @OA\Property(property="pergerakan", type="string", example="0"),
+     *            @OA\Property(property="paritas", type="integer", example=null),
+     *            @OA\Property(property="kardiotokografi", type="integer", example=null),
+     *            @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            
+     *          )
+     *         )
+     *            
+     *          )
+     *         )
+     *     )
+     * ),
+     *   ),
+     */
+
     public function index()
     {
         abort_if(Gate::denies('sm_reading_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new SmReadingResource(SmReading::with(['responden'])->get());
     }
+
+    /**
+     * @OA\Post(
+     *     path="/sm-readings",
+     *     summary="Store smarwatch reading data",
+     *     tags={"SM Reading"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id data",
+     *         required=true,
+     *         example=1,
+     *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Response(response="200", description="Success",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="data", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="fetal_hr", type="integer", example=99),
+     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            @OA\Property(property="responden_id", type="integer", example=1),
+     *         @OA\Property(property="responden", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="nama", type="string", example="Valerica"),
+     *            @OA\Property(property="kode", type="string", example="ES101"),
+     *            @OA\Property(property="usia", type="integer", example=29),
+     *            @OA\Property(property="his_adekuat", type="string", example="0"),
+     *            @OA\Property(property="pergerakan", type="string", example="0"),
+     *            @OA\Property(property="paritas", type="integer", example=null),
+     *            @OA\Property(property="kardiotokografi", type="integer", example=null),
+     *            @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            
+     *          )
+     *         )
+     *            
+     *          )
+     *         )
+     *     )
+     * ),
+     *   ),
+     */
 
     public function store(StoreSmReadingRequest $request)
     {
@@ -29,12 +125,168 @@ class SmReadingApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/sm-readings/{id}",
+     *     summary="Get smarwatch reading data",
+     *     tags={"SM Reading"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id data",
+     *         required=true,
+     *         example=1,
+     *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Response(response="200", description="Success",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="data", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="fetal_hr", type="integer", example=99),
+     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            @OA\Property(property="responden_id", type="integer", example=1),
+     *         @OA\Property(property="responden", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="nama", type="string", example="Valerica"),
+     *            @OA\Property(property="kode", type="string", example="ES101"),
+     *            @OA\Property(property="usia", type="integer", example=29),
+     *            @OA\Property(property="his_adekuat", type="string", example="0"),
+     *            @OA\Property(property="pergerakan", type="string", example="0"),
+     *            @OA\Property(property="paritas", type="integer", example=null),
+     *            @OA\Property(property="kardiotokografi", type="integer", example=null),
+     *            @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            
+     *          )
+     *         )
+     *            
+     *          )
+     *         )
+     *     )
+     * ),
+     *   ),
+     */
+
     public function show(SmReading $smReading)
     {
         abort_if(Gate::denies('sm_reading_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new SmReadingResource($smReading->load(['responden']));
     }
+
+    /**
+     * @OA\PathItem(
+     *   path="/sm_readings/{id}",
+     *   @OA\Put(
+     *     summary="Get smarwatch reading data",
+     *     tags={"SM Reading"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id data",
+     *         required=true,
+     *         example=1,
+     *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Response(response="200", description="Success",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="data", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="fetal_hr", type="integer", example=99),
+     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            @OA\Property(property="responden_id", type="integer", example=1),
+     *         @OA\Property(property="responden", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="nama", type="string", example="Valerica"),
+     *            @OA\Property(property="kode", type="string", example="ES101"),
+     *            @OA\Property(property="usia", type="integer", example=29),
+     *            @OA\Property(property="his_adekuat", type="string", example="0"),
+     *            @OA\Property(property="pergerakan", type="string", example="0"),
+     *            @OA\Property(property="paritas", type="integer", example=null),
+     *            @OA\Property(property="kardiotokografi", type="integer", example=null),
+     *            @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            
+     *          )
+     *         )
+     *            
+     *          )
+     *         )
+     *     )
+     *   ),
+     * ),
+     *   @OA\Patch(
+     *     summary="Get smarwatch reading data",
+     *     tags={"SM Reading"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id data",
+     *         required=true,
+     *         example=1,
+     *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Response(response="200", description="Success",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="data", type="array",
+     *          @OA\Items(
+     *            type="object",
+     *            @OA\Property(property="id", type="integer", example=1),
+     *            @OA\Property(property="fetal_hr", type="integer", example=99),
+     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            @OA\Property(property="responden_id", type="integer", example=1),
+     *            @OA\Property(property="responden", type="array",
+     *              @OA\Items(
+     *               type="object",
+     *               @OA\Property(property="id", type="integer", example=1),
+     *               @OA\Property(property="nama", type="string", example="Valerica"),
+     *               @OA\Property(property="kode", type="string", example="ES101"),
+     *               @OA\Property(property="usia", type="integer", example=29),
+     *               @OA\Property(property="his_adekuat", type="string", example="0"),
+     *               @OA\Property(property="pergerakan", type="string", example="0"),
+     *               @OA\Property(property="paritas", type="integer", example=null),
+     *               @OA\Property(property="kardiotokografi", type="integer", example=null),
+     *               @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
+     *               @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *               @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *               @OA\Property(property="deleted_at", type="string", example=null),
+     *               
+     *             )
+     *            )
+     *            
+     *          )
+     *         )
+     *     )
+     *     ),
+     *     ),
+     *   ),
+     * 
+     * )
+     */
 
     public function update(UpdateSmReadingRequest $request, SmReading $smReading)
     {

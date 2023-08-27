@@ -7,18 +7,31 @@
     },
     "servers": [
         {
-            "url": "http://localhost",
+            "url": "http://localhost:8000",
             "description": "Pregnancy API Server"
         }
     ],
     "paths": {
-        "/iot_reading": {
-            "get": {
+        "/sm_readings/{id}": {
+            "put": {
                 "tags": [
-                    "IOT Reading"
+                    "SM Reading"
                 ],
-                "summary": "Get iot_reading data",
-                "operationId": "71cff0614b8d10c53912c93757c208fc",
+                "summary": "Get smarwatch reading data",
+                "operationId": "8990d2a2d8869ed4a463d567493b3b3b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -34,25 +47,695 @@
                                                         "type": "integer",
                                                         "example": 1
                                                     },
-                                                    "respondent_id": {
-                                                        "type": "integer",
-                                                        "example": 1
-                                                    },
-                                                    "respondent_name": {
-                                                        "type": "string",
-                                                        "example": "Feliona"
-                                                    },
                                                     "fetal_hr": {
                                                         "type": "integer",
-                                                        "example": 1
+                                                        "example": 99
                                                     },
                                                     "resp_count": {
                                                         "type": "integer",
-                                                        "example": 1
+                                                        "example": 9
                                                     },
                                                     "created_at": {
                                                         "type": "string",
                                                         "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": null
+                                                    },
+                                                    "responden_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "responden": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "nama": {
+                                                                    "type": "string",
+                                                                    "example": "Valerica"
+                                                                },
+                                                                "kode": {
+                                                                    "type": "string",
+                                                                    "example": "ES101"
+                                                                },
+                                                                "usia": {
+                                                                    "type": "integer",
+                                                                    "example": 29
+                                                                },
+                                                                "his_adekuat": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "pergerakan": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "paritas": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "kardiotokografi": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "alamat": {
+                                                                    "type": "string",
+                                                                    "example": "Chateau de Versaille"
+                                                                },
+                                                                "created_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "updated_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "deleted_at": {
+                                                                    "type": "string",
+                                                                    "example": null
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Get smarwatch reading data",
+                "operationId": "af591ab0fcf0d5b0ec61f846d9b5059c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "fetal_hr": {
+                                                        "type": "integer",
+                                                        "example": 99
+                                                    },
+                                                    "resp_count": {
+                                                        "type": "integer",
+                                                        "example": 9
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": null
+                                                    },
+                                                    "responden_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "responden": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "nama": {
+                                                                    "type": "string",
+                                                                    "example": "Valerica"
+                                                                },
+                                                                "kode": {
+                                                                    "type": "string",
+                                                                    "example": "ES101"
+                                                                },
+                                                                "usia": {
+                                                                    "type": "integer",
+                                                                    "example": 29
+                                                                },
+                                                                "his_adekuat": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "pergerakan": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "paritas": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "kardiotokografi": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "alamat": {
+                                                                    "type": "string",
+                                                                    "example": "Chateau de Versaille"
+                                                                },
+                                                                "created_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "updated_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "deleted_at": {
+                                                                    "type": "string",
+                                                                    "example": null
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/iot-readings": {
+            "get": {
+                "tags": [
+                    "IOT Reading"
+                ],
+                "summary": "Get iot_reading data",
+                "operationId": "885d6aa1afe17dfc08395caea16a9ba3",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "fetal_hr": {
+                                                        "type": "integer",
+                                                        "example": 99
+                                                    },
+                                                    "resp_count": {
+                                                        "type": "integer",
+                                                        "example": 9
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": null
+                                                    },
+                                                    "responden_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "responden": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "nama": {
+                                                                    "type": "string",
+                                                                    "example": "Valerica"
+                                                                },
+                                                                "kode": {
+                                                                    "type": "string",
+                                                                    "example": "ES101"
+                                                                },
+                                                                "usia": {
+                                                                    "type": "integer",
+                                                                    "example": 29
+                                                                },
+                                                                "his_adekuat": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "pergerakan": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "paritas": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "kardiotokografi": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "alamat": {
+                                                                    "type": "string",
+                                                                    "example": "Chateau de Versaille"
+                                                                },
+                                                                "created_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "updated_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "deleted_at": {
+                                                                    "type": "string",
+                                                                    "example": null
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sm-readings": {
+            "get": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Get smarwatch reading data",
+                "operationId": "6d63d0f24975365327da56e9330eefff",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "fetal_hr": {
+                                                        "type": "integer",
+                                                        "example": 99
+                                                    },
+                                                    "resp_count": {
+                                                        "type": "integer",
+                                                        "example": 9
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": null
+                                                    },
+                                                    "responden_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "responden": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "nama": {
+                                                                    "type": "string",
+                                                                    "example": "Valerica"
+                                                                },
+                                                                "kode": {
+                                                                    "type": "string",
+                                                                    "example": "ES101"
+                                                                },
+                                                                "usia": {
+                                                                    "type": "integer",
+                                                                    "example": 29
+                                                                },
+                                                                "his_adekuat": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "pergerakan": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "paritas": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "kardiotokografi": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "alamat": {
+                                                                    "type": "string",
+                                                                    "example": "Chateau de Versaille"
+                                                                },
+                                                                "created_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "updated_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "deleted_at": {
+                                                                    "type": "string",
+                                                                    "example": null
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Store smarwatch reading data",
+                "operationId": "62e97ef29ba844a92b2114c32ac42376",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "fetal_hr": {
+                                                        "type": "integer",
+                                                        "example": 99
+                                                    },
+                                                    "resp_count": {
+                                                        "type": "integer",
+                                                        "example": 9
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": null
+                                                    },
+                                                    "responden_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "responden": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "nama": {
+                                                                    "type": "string",
+                                                                    "example": "Valerica"
+                                                                },
+                                                                "kode": {
+                                                                    "type": "string",
+                                                                    "example": "ES101"
+                                                                },
+                                                                "usia": {
+                                                                    "type": "integer",
+                                                                    "example": 29
+                                                                },
+                                                                "his_adekuat": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "pergerakan": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "paritas": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "kardiotokografi": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "alamat": {
+                                                                    "type": "string",
+                                                                    "example": "Chateau de Versaille"
+                                                                },
+                                                                "created_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "updated_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "deleted_at": {
+                                                                    "type": "string",
+                                                                    "example": null
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sm-readings/{id}": {
+            "get": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Get smarwatch reading data",
+                "operationId": "0e09f07efd1d75aa75ff17a9350b770b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "fetal_hr": {
+                                                        "type": "integer",
+                                                        "example": 99
+                                                    },
+                                                    "resp_count": {
+                                                        "type": "integer",
+                                                        "example": 9
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": null
+                                                    },
+                                                    "responden_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "responden": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "id": {
+                                                                    "type": "integer",
+                                                                    "example": 1
+                                                                },
+                                                                "nama": {
+                                                                    "type": "string",
+                                                                    "example": "Valerica"
+                                                                },
+                                                                "kode": {
+                                                                    "type": "string",
+                                                                    "example": "ES101"
+                                                                },
+                                                                "usia": {
+                                                                    "type": "integer",
+                                                                    "example": 29
+                                                                },
+                                                                "his_adekuat": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "pergerakan": {
+                                                                    "type": "string",
+                                                                    "example": "0"
+                                                                },
+                                                                "paritas": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "kardiotokografi": {
+                                                                    "type": "integer",
+                                                                    "example": null
+                                                                },
+                                                                "alamat": {
+                                                                    "type": "string",
+                                                                    "example": "Chateau de Versaille"
+                                                                },
+                                                                "created_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "updated_at": {
+                                                                    "type": "string",
+                                                                    "example": "2023-08-24 02:06:10"
+                                                                },
+                                                                "deleted_at": {
+                                                                    "type": "string",
+                                                                    "example": null
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
                                                     }
                                                 },
                                                 "type": "object"
