@@ -33,6 +33,11 @@ class Responden extends Model implements HasMedia
         'deleted_at',
     ];
 
+    protected $attributes = [
+        'his_adekuat' => '2', 
+        'pergerakan' => '2',
+    ];
+
     protected $fillable = [
         'nama',
         'kode',
