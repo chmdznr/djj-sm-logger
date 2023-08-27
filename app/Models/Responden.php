@@ -19,12 +19,12 @@ class Responden extends Model implements HasMedia
 
     public const PERGERAKAN_RADIO = [
         '1' => 'ya',
-        '0' => 'tidak',
+        '2' => 'tidak',
     ];
 
     public const HIS_ADEKUAT_RADIO = [
         '1' => 'ya',
-        '0' => 'tidak',
+        '2' => 'tidak',
     ];
 
     protected $dates = [
