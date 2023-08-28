@@ -144,19 +144,19 @@
     aaSorting: [],
     ajax: "{{ route('admin.respondens.index') }}",
     columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'nama', name: 'nama' },
-{ data: 'kode', name: 'kode' },
-{ data: 'usia', name: 'usia' },
-{ data: 'his_adekuat', name: 'his_adekuat' },
-{ data: 'pergerakan', name: 'pergerakan' },
-{ data: 'paritas', name: 'paritas' },
-{ data: 'kardiotokografi', name: 'kardiotokografi' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
+    { data: 'placeholder', name: 'placeholder' },
+    { data: 'id', name: 'id' },
+    { data: 'nama', name: 'nama' },
+    { data: 'kode', name: 'kode' },
+    { data: 'usia', name: 'usia' },
+    { data: 'his_adekuat', name: 'his_adekuat' },
+    { data: 'pergerakan', name: 'pergerakan' },
+    { data: 'paritas', name: 'paritas' },
+    { data: 'kardiotokografi', name: 'kardiotokografi' },
+    { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    order: [[ 0, 'desc' ]],
     pageLength: 100,
   };
   let table = $('.datatable-Responden').DataTable(dtOverrideGlobals);

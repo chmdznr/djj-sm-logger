@@ -19,12 +19,12 @@ class Responden extends Model implements HasMedia
 
     public const PERGERAKAN_RADIO = [
         '1' => 'ya',
-        '2' => 'tidak',
+        '0' => 'tidak',
     ];
 
     public const HIS_ADEKUAT_RADIO = [
         '1' => 'ya',
-        '2' => 'tidak',
+        '0' => 'tidak',
     ];
 
     protected $dates = [
@@ -34,8 +34,8 @@ class Responden extends Model implements HasMedia
     ];
 
     protected $attributes = [
-        'his_adekuat' => '2', 
-        'pergerakan' => '2',
+        'his_adekuat' => '0', 
+        'pergerakan' => '0',
     ];
 
     protected $fillable = [
