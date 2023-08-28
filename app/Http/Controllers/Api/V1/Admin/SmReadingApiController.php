@@ -15,7 +15,7 @@ class SmReadingApiController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/sm-readings",
+     *     path="/api/v1/sm-readings",
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
      *     @OA\Response(response="200", description="Success",
@@ -25,15 +25,14 @@ class SmReadingApiController extends Controller
      *          @OA\Items(
      *            type="object",
      *            @OA\Property(property="id", type="integer", example=1),
-     *            @OA\Property(property="fetal_hr", type="integer", example=99),
-     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="spo2", type="integer", example=125),
+     *            @OA\Property(property="hr", type="integer", example=70),
+     *            @OA\Property(property="skin_temp", type="integer", example=33),
      *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="deleted_at", type="string", example=null),
      *            @OA\Property(property="responden_id", type="integer", example=1),
-     *         @OA\Property(property="responden", type="array",
-     *          @OA\Items(
-     *            type="object",
+     *         @OA\Property(property="responden", type="object",
      *            @OA\Property(property="id", type="integer", example=1),
      *            @OA\Property(property="nama", type="string", example="Valerica"),
      *            @OA\Property(property="kode", type="string", example="ES101"),
@@ -49,12 +48,12 @@ class SmReadingApiController extends Controller
      *            
      *          )
      *         )
-     *            
-     *          )
      *         )
      *     )
      * ),
-     *   ),
+     *     @OA\Response(response="401", description="Unauthenticated"),
+     *     @OA\Response(response="403", description="Unauthorized"),
+     *),
      */
 
     public function index()
@@ -69,51 +68,66 @@ class SmReadingApiController extends Controller
      *     path="/sm-readings",
      *     summary="Store smarwatch reading data",
      *     tags={"SM Reading"},
-     *      @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="Id data",
+     *     @OA\RequestBody(
      *         required=true,
-     *         example=1,
-     *         @OA\Schema(type="integer", format="int64")
+     *         description="User object",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"responden_id", "spo_2", "hr", "skin_temp"},
+     *                 @OA\Property(
+     *                     property="responden_id",
+     *                     type="integer",
+     *                     example=1
+     *                 ),
+     *                 @OA\Property(
+     *                     property="spo_2",
+     *                     type="integer",
+     *                     example=125
+     *                 ),
+     *                 @OA\Property(
+     *                     property="hr",
+     *                     type="integer",
+     *                     example=70
+     *                 ),
+     *                 @OA\Property(
+     *                     property="skin_temp",
+     *                     type="integer",
+     *                     example=33
+     *                 ),
+     *             )
+     *         )
      *     ),
-     *     @OA\Response(response="200", description="Success",
+     *     @OA\Response(response="201", description="Created",
      *     @OA\JsonContent(
      *         type="object",
-     *         @OA\Property(property="data", type="array",
-     *          @OA\Items(
-     *            type="object",
-     *            @OA\Property(property="id", type="integer", example=1),
-     *            @OA\Property(property="fetal_hr", type="integer", example=99),
-     *            @OA\Property(property="resp_count", type="integer", example=9),
-     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
-     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
-     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *         @OA\Property(property="data", type="object",
      *            @OA\Property(property="responden_id", type="integer", example=1),
-     *         @OA\Property(property="responden", type="array",
-     *          @OA\Items(
-     *            type="object",
-     *            @OA\Property(property="id", type="integer", example=1),
-     *            @OA\Property(property="nama", type="string", example="Valerica"),
-     *            @OA\Property(property="kode", type="string", example="ES101"),
-     *            @OA\Property(property="usia", type="integer", example=29),
-     *            @OA\Property(property="his_adekuat", type="string", example="0"),
-     *            @OA\Property(property="pergerakan", type="string", example="0"),
-     *            @OA\Property(property="paritas", type="integer", example=null),
-     *            @OA\Property(property="kardiotokografi", type="integer", example=null),
-     *            @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
+     *            @OA\Property(property="spo2", type="integer", example=125),
+     *            @OA\Property(property="hr", type="integer", example=70),
+     *            @OA\Property(property="skin_temp", type="integer", example=33),
      *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
-     *            @OA\Property(property="deleted_at", type="string", example=null),
-     *            
-     *          )
-     *         )
-     *            
-     *          )
+     *            @OA\Property(property="id", type="integer", example=1),
      *         )
      *     )
+     *     ),
+     *     @OA\Response(response="401", description="Unauthenticated"),
+     *     @OA\Response(response="403", description="Unauthorized"),
+     *     @OA\Response(response="422", description="Missing field",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The hr field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="hr", type="array",
+     *              @OA\Items(type="string", example="The hr field is required.")
+     *            ),
+     *         )
+     *     ),
+     *     ),
      * ),
-     *   ),
+     * 
+     *),
      */
 
     public function store(StoreSmReadingRequest $request)
@@ -127,7 +141,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/sm-readings/{id}",
+     *     path="/api/v1/sm-readings/{id}",
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
      *      @OA\Parameter(
@@ -141,40 +155,38 @@ class SmReadingApiController extends Controller
      *     @OA\Response(response="200", description="Success",
      *     @OA\JsonContent(
      *         type="object",
-     *         @OA\Property(property="data", type="array",
-     *          @OA\Items(
-     *            type="object",
+     *         @OA\Property(property="data", type="object",
      *            @OA\Property(property="id", type="integer", example=1),
-     *            @OA\Property(property="fetal_hr", type="integer", example=99),
-     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="spo2", type="integer", example=125),
+     *            @OA\Property(property="hr", type="integer", example=70),
+     *            @OA\Property(property="skin_temp", type="integer", example=33),
      *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="deleted_at", type="string", example=null),
      *            @OA\Property(property="responden_id", type="integer", example=1),
-     *         @OA\Property(property="responden", type="array",
-     *          @OA\Items(
-     *            type="object",
-     *            @OA\Property(property="id", type="integer", example=1),
-     *            @OA\Property(property="nama", type="string", example="Valerica"),
-     *            @OA\Property(property="kode", type="string", example="ES101"),
-     *            @OA\Property(property="usia", type="integer", example=29),
-     *            @OA\Property(property="his_adekuat", type="string", example="0"),
-     *            @OA\Property(property="pergerakan", type="string", example="0"),
-     *            @OA\Property(property="paritas", type="integer", example=null),
-     *            @OA\Property(property="kardiotokografi", type="integer", example=null),
-     *            @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
-     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
-     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
-     *            @OA\Property(property="deleted_at", type="string", example=null),
+     *            @OA\Property(property="responden", type="object",
+     *                  @OA\Property(property="id", type="integer", example=1),
+     *                  @OA\Property(property="nama", type="string", example="Valerica"),
+     *                  @OA\Property(property="kode", type="string", example="ES101"),
+     *                  @OA\Property(property="usia", type="integer", example=29),
+     *                  @OA\Property(property="his_adekuat", type="string", example="0"),
+     *                  @OA\Property(property="pergerakan", type="string", example="0"),
+     *                  @OA\Property(property="paritas", type="integer", example=null),
+     *                  @OA\Property(property="kardiotokografi", type="integer", example=null),
+     *                  @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
+     *                  @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
+     *                  @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
+     *                  @OA\Property(property="deleted_at", type="string", example=null),
      *            
+     *              )
+     *            )
      *          )
-     *         )
-     *            
-     *          )
-     *         )
-     *     )
+     *     ),
+     * 
+     *     @OA\Response(response="401", description="Unauthenticated"),
+     *     @OA\Response(response="403", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Data not found"),
      * ),
-     *   ),
      */
 
     public function show(SmReading $smReading)
@@ -186,7 +198,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\PathItem(
-     *   path="/sm_readings/{id}",
+     *   path="/api/v1/sm-readings/{id}",
      *   @OA\Put(
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
@@ -198,42 +210,66 @@ class SmReadingApiController extends Controller
      *         example=1,
      *         @OA\Schema(type="integer", format="int64")
      *     ),
-     *     @OA\Response(response="200", description="Success",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="User object",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"responden_id", "spo_2", "hr", "skin_temp"},
+     *                 @OA\Property(
+     *                     property="responden_id",
+     *                     type="integer",
+     *                     example=1
+     *                 ),
+     *                 @OA\Property(
+     *                     property="spo_2",
+     *                     type="integer",
+     *                     example=125
+     *                 ),
+     *                 @OA\Property(
+     *                     property="hr",
+     *                     type="integer",
+     *                     example=70
+     *                 ),
+     *                 @OA\Property(
+     *                     property="skin_temp",
+     *                     type="integer",
+     *                     example=33
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(response="202", description="Accepted",
      *     @OA\JsonContent(
      *         type="object",
-     *         @OA\Property(property="data", type="array",
-     *          @OA\Items(
-     *            type="object",
+     *         @OA\Property(property="data", type="object",
      *            @OA\Property(property="id", type="integer", example=1),
-     *            @OA\Property(property="fetal_hr", type="integer", example=99),
-     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="spo2", type="integer", example=99),
+     *            @OA\Property(property="hr", type="integer", example=9),
+     *            @OA\Property(property="skin_temp", type="integer", example=9),
      *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="deleted_at", type="string", example=null),
      *            @OA\Property(property="responden_id", type="integer", example=1),
-     *         @OA\Property(property="responden", type="array",
-     *          @OA\Items(
-     *            type="object",
-     *            @OA\Property(property="id", type="integer", example=1),
-     *            @OA\Property(property="nama", type="string", example="Valerica"),
-     *            @OA\Property(property="kode", type="string", example="ES101"),
-     *            @OA\Property(property="usia", type="integer", example=29),
-     *            @OA\Property(property="his_adekuat", type="string", example="0"),
-     *            @OA\Property(property="pergerakan", type="string", example="0"),
-     *            @OA\Property(property="paritas", type="integer", example=null),
-     *            @OA\Property(property="kardiotokografi", type="integer", example=null),
-     *            @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
-     *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
-     *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
-     *            @OA\Property(property="deleted_at", type="string", example=null),
-     *            
-     *          )
-     *         )
-     *            
-     *          )
      *         )
      *     )
      *   ),
+     *   @OA\Response(response="401", description="Unauthenticated"),
+     *   @OA\Response(response="403", description="Unauthorized"),
+     *   @OA\Response(response="404", description="Data not found"),
+     *     @OA\Response(response="422", description="Missing field",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The hr field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="hr", type="array",
+     *              @OA\Items(type="string", example="The hr field is required.")
+     *            ),
+     *         )
+     *     ),
+     *   ),
+     * 
      * ),
      *   @OA\Patch(
      *     summary="Get smarwatch reading data",
@@ -246,41 +282,63 @@ class SmReadingApiController extends Controller
      *         example=1,
      *         @OA\Schema(type="integer", format="int64")
      *     ),
-     *     @OA\Response(response="200", description="Success",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="User object",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"responden_id", "spo_2", "hr", "skin_temp"},
+     *                 @OA\Property(
+     *                     property="responden_id",
+     *                     type="integer",
+     *                     example=1
+     *                 ),
+     *                 @OA\Property(
+     *                     property="spo_2",
+     *                     type="integer",
+     *                     example=125
+     *                 ),
+     *                 @OA\Property(
+     *                     property="hr",
+     *                     type="integer",
+     *                     example=70
+     *                 ),
+     *                 @OA\Property(
+     *                     property="skin_temp",
+     *                     type="integer",
+     *                     example=33
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(response="202", description="Accepted",
      *     @OA\JsonContent(
      *         type="object",
-     *         @OA\Property(property="data", type="array",
-     *          @OA\Items(
-     *            type="object",
+     *         @OA\Property(property="data", type="object",
      *            @OA\Property(property="id", type="integer", example=1),
-     *            @OA\Property(property="fetal_hr", type="integer", example=99),
-     *            @OA\Property(property="resp_count", type="integer", example=9),
+     *            @OA\Property(property="spo2", type="integer", example=99),
+     *            @OA\Property(property="hr", type="integer", example=9),
+     *            @OA\Property(property="skin_temp", type="integer", example=9),
      *            @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
      *            @OA\Property(property="deleted_at", type="string", example=null),
      *            @OA\Property(property="responden_id", type="integer", example=1),
-     *            @OA\Property(property="responden", type="array",
-     *              @OA\Items(
-     *               type="object",
-     *               @OA\Property(property="id", type="integer", example=1),
-     *               @OA\Property(property="nama", type="string", example="Valerica"),
-     *               @OA\Property(property="kode", type="string", example="ES101"),
-     *               @OA\Property(property="usia", type="integer", example=29),
-     *               @OA\Property(property="his_adekuat", type="string", example="0"),
-     *               @OA\Property(property="pergerakan", type="string", example="0"),
-     *               @OA\Property(property="paritas", type="integer", example=null),
-     *               @OA\Property(property="kardiotokografi", type="integer", example=null),
-     *               @OA\Property(property="alamat", type="string", example="Chateau de Versaille"),
-     *               @OA\Property(property="created_at", type="string", example="2023-08-24 02:06:10"),
-     *               @OA\Property(property="updated_at", type="string", example="2023-08-24 02:06:10"),
-     *               @OA\Property(property="deleted_at", type="string", example=null),
-     *               
-     *             )
-     *            )
-     *            
-     *          )
      *         )
      *     )
+     *   ),
+     *   @OA\Response(response="401", description="Unauthenticated"),
+     *   @OA\Response(response="403", description="Unauthorized"),
+     *   @OA\Response(response="404", description="Data not found"),
+     *     @OA\Response(response="422", description="Missing field",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The hr field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="hr", type="array",
+     *              @OA\Items(type="string", example="The hr field is required.")
+     *            ),
+     *         )
      *     ),
      *     ),
      *   ),
@@ -296,6 +354,26 @@ class SmReadingApiController extends Controller
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
     }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/v1/sm-readings/{id}",
+     *     summary="Delete smarwatch reading data",
+     *     tags={"SM Reading"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id data",
+     *         required=true,
+     *         example=1,
+     *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Response(response="204", description="Success"),
+     *     @OA\Response(response="401", description="Unauthenticated"),
+     *     @OA\Response(response="403", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Data not found"),
+     * ),
+     */
 
     public function destroy(SmReading $smReading)
     {
