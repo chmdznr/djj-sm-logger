@@ -285,6 +285,12 @@ class IotReadingApiController extends Controller
      *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
      *         )
      *     ),
+     *     @OA\Response(response="422", description="Unprocessable Content",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="string", example="The field is required.")
+     *         )
+     *      ),
      *     @OA\Response(response=500, description="Internal Server Error"),
      *     
      *    ),
