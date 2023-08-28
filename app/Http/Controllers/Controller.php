@@ -13,15 +13,7 @@ use Illuminate\Routing\Controller as BaseController;
  *     description="Deskripsi API"
  * )
  * 
- * @OA\SecurityScheme(
- *     type="http",
- *     description="Login with email and password to get the authentication token. 
- *     Input the token without 'Bearer' prefix.",
- *     in="header",
- *     scheme="bearer",
- *     securityScheme="bearerAuth",
- *     name="Authorization",
- * )
+ * 
  * 
  * @OA\Server(
  *     url=L5_SWAGGER_CONST_HOST,
@@ -29,6 +21,16 @@ use Illuminate\Routing\Controller as BaseController;
  * )
  */
 
+
+//  @OA\SecurityScheme(
+//     *     type="http",
+//     *     description="Login with email and password to get the authentication token. 
+//     *     Input the token without 'Bearer' prefix.",
+//     *     in="header",
+//     *     scheme="bearer",
+//     *     securityScheme="bearerAuth",
+//     *     name="Authorization",
+//     * )
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
