@@ -73,7 +73,10 @@ class SmReadingApiController extends Controller
      *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
      *         )
      *     ),
-     *),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     * ),
      */
 
     public function index()
@@ -155,19 +158,21 @@ class SmReadingApiController extends Controller
      *         )
      *     ),
      *     @OA\Response(response="422", description="Missing field",
-     *     @OA\JsonContent(
-     *         type="object",
-     *         @OA\Property(property="message", type="string", example="The hr field is required."),
-     *         @OA\Property(property="errors", type="object",
-     *            @OA\Property(property="hr", type="array",
-     *              @OA\Items(type="string", example="The hr field is required.")
-     *            ),
-     *         )
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="The hr field is required."),
+     *              @OA\Property(property="errors", type="object",
+     *                  @OA\Property(property="hr", type="array",
+     *                      @OA\Items(type="string", example="The hr field is required.")
+     *                  ),
+     *              )
+     *          ),
      *     ),
-     *     ),
-     * ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      * 
-     *),
+     * ),
      */
 
     public function store(StoreSmReadingRequest $request)
@@ -251,6 +256,9 @@ class SmReadingApiController extends Controller
      *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\SmReading] 1")
      *          )
      *      ),
+     *      security={
+     *         {"bearerAuth": {}}
+     *     }
      * ),
      */
 
@@ -359,6 +367,9 @@ class SmReadingApiController extends Controller
      *         )
      *     ),
      *   ),
+     *   security={
+     *         {"bearerAuth": {}}
+     *     }
      * 
      * ),
      *   @OA\Patch(
@@ -446,18 +457,20 @@ class SmReadingApiController extends Controller
      *          )
      *      ),
      *     @OA\Response(response="422", description="Missing field",
-     *     @OA\JsonContent(
-     *         type="object",
-     *         @OA\Property(property="message", type="string", example="The hr field is required."),
-     *         @OA\Property(property="errors", type="object",
-     *            @OA\Property(property="hr", type="array",
-     *              @OA\Items(type="string", example="The hr field is required.")
-     *            ),
-     *         )
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="The hr field is required."),
+     *              @OA\Property(property="errors", type="object",
+     *                  @OA\Property(property="hr", type="array",
+     *                      @OA\Items(type="string", example="The hr field is required.")
+     *                  ),
+     *              )
+     *          ),
      *     ),
-     *     ),
-     *   ),
-     * 
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     *   )
      * )
      */
 
@@ -514,6 +527,9 @@ class SmReadingApiController extends Controller
      *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\SmReading] 1")
      *          )
      *      ),
+     *      security={
+     *         {"bearerAuth": {}}
+     *     }
      * ),
      */
 

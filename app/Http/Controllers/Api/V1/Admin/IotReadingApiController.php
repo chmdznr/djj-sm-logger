@@ -61,6 +61,9 @@ class IotReadingApiController extends Controller
      *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
      *         )
      *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      *   ),
      */
     public function index()
@@ -137,18 +140,20 @@ class IotReadingApiController extends Controller
      *         )
      *     ),
      *     @OA\Response(response="422", description="Missing field",
-     *     @OA\JsonContent(
-     *         type="object",
-     *         @OA\Property(property="message", type="string", example="The resp count field is required."),
-     *         @OA\Property(property="errors", type="object",
-     *            @OA\Property(property="resp_count", type="array",
-     *              @OA\Items(type="string", example="The resp count field is required.")
-     *            ),
-     *         )
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="The resp count field is required."),
+     *              @OA\Property(property="errors", type="object",
+     *                  @OA\Property(property="resp_count", type="array",
+     *                      @OA\Items(type="string", example="The resp count field is required.")
+     *                  ),
+     *              )
+     *          ),
      *     ),
-     *     ),
-     *    
-     *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     *     
      *   )
      */
 
@@ -225,6 +230,9 @@ class IotReadingApiController extends Controller
      *          )
      *      ),
      *      @OA\Response(response=500, description="Internal Server Error"),
+     *      security={
+     *         {"bearerAuth": {}}
+     *     }
      *  ),
      */
 
@@ -332,7 +340,9 @@ class IotReadingApiController extends Controller
      *     ),
      *     ),
      *     @OA\Response(response=500, description="Internal Server Error"),
-     *     
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      *    ),
      *     
      *  ),
@@ -431,9 +441,9 @@ class IotReadingApiController extends Controller
      *     ),
      *     ),
      *     @OA\Response(response=500, description="Internal Server Error"),
-     *    ),
-     *     
-     *  ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      * )
      */
 
@@ -494,7 +504,9 @@ class IotReadingApiController extends Controller
      *          )
      *      ),
      *      @OA\Response(response=500, description="Internal Server Error"),
-     * 
+     *      security={
+     *         {"bearerAuth": {}}
+     *     }
      *     
      *    ),
      *     

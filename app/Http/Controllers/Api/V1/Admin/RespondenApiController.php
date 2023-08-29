@@ -59,6 +59,9 @@ class RespondenApiController extends Controller
      *         )
      *      ),
      *     @OA\Response(response="403", description="Unauthorized"),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      *   ),
      */
 
@@ -143,17 +146,20 @@ class RespondenApiController extends Controller
      *      ),
      *     @OA\Response(response="403", description="Unauthorized"),
      *     @OA\Response(response="422", description="Missing field",
-     *     @OA\JsonContent(
-     *         type="object",
-     *         @OA\Property(property="message", type="string", example="The usia field is required."),
-     *         @OA\Property(property="errors", type="object",
-     *            @OA\Property(property="usia", type="array",
-     *              @OA\Items(type="string", example="The usia field is required.")
-     *            ),
-     *         )
-     *     ),
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="The usia field is required."),
+     *              @OA\Property(property="errors", type="object",
+     *                  @OA\Property(property="usia", type="array",
+     *                      @OA\Items(type="string", example="The usia field is required.")
+     *                  ),
+     *              )
+     *          ),
      *    
      *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      *   )
      */
 
@@ -210,6 +216,9 @@ class RespondenApiController extends Controller
      *     @OA\Response(response="401", description="Unauthenticated"),
      *     @OA\Response(response="403", description="Unauthorized"),
      *     @OA\Response(response="404", description="Data not found"),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      *   ),
      */
 
@@ -321,7 +330,9 @@ class RespondenApiController extends Controller
      *         )
      *      ),
      *     @OA\Response(response=500, description="Internal Server Error"),
-     *     
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      *    ),
      *  @OA\Patch(
      *     tags={"Respondens"},
@@ -424,7 +435,9 @@ class RespondenApiController extends Controller
      *         )
      *      ),
      *     @OA\Response(response=500, description="Internal Server Error"),
-     *     
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      *    ),
      *  ),
      */
@@ -466,8 +479,10 @@ class RespondenApiController extends Controller
      *     ),
      *     @OA\Response(response="401", description="Unauthenticated"),
      *     @OA\Response(response="403", description="Unauthorized"),
-     *     @OA\Response(response="404", description="Data not found"
-     * ),
+     *     @OA\Response(response="404", description="Data not found"),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
      * ),
      */
 
