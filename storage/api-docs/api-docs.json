@@ -1,0 +1,1886 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Pregnancy Api",
+        "description": "Deskripsi API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api/v1",
+            "description": "Pregnancy API Server"
+        }
+    ],
+    "paths": {
+        "/iot-readings/{id}": {
+            "get": {
+                "tags": [
+                    "IOT Reading"
+                ],
+                "summary": "Get iot_reading by id",
+                "description": "Returns project data",
+                "operationId": "e4f5586328b1219de2b9d5ebd9de30de",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 2
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "fetal_hr": {
+                                                    "type": "integer",
+                                                    "example": 20
+                                                },
+                                                "resp_count": {
+                                                    "type": "integer",
+                                                    "example": 99
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 13:43:25"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 13:43:25"
+                                                },
+                                                "deleted_at": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "responden_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "responden": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "nama": {
+                                                            "type": "string",
+                                                            "example": "Jahfal"
+                                                        },
+                                                        "kode": {
+                                                            "type": "string",
+                                                            "example": "332"
+                                                        },
+                                                        "usia": {
+                                                            "type": "integer",
+                                                            "example": 19
+                                                        },
+                                                        "his_adekuat": {
+                                                            "type": "integer",
+                                                            "example": null
+                                                        },
+                                                        "pergerakan": {
+                                                            "type": "integer",
+                                                            "example": null
+                                                        },
+                                                        "paritas": {
+                                                            "type": "integer",
+                                                            "example": null
+                                                        },
+                                                        "alamat": {
+                                                            "type": "integer",
+                                                            "example": null
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "example": "2023-08-28 20:55:36"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "example": "2023-08-28 20:55:36"
+                                                        },
+                                                        "deleted_at": {
+                                                            "type": "integer",
+                                                            "example": null
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "IOT Reading"
+                ],
+                "summary": "Update data iot_reading",
+                "description": "Updates an existing iot_reading",
+                "operationId": "cbe7e331a43d95bdc85cec2089f90662",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 2
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Set bearer token in header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updated user object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "responden_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "fetal_hr": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "resp_count": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "fetal_hr": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "resp_count": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 13:43:25"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 14:03:30"
+                                                },
+                                                "deleted_at": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "responden_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "IOT Reading"
+                ],
+                "summary": "Delete data iot_reading",
+                "description": "Delete an existing iot_reading by id",
+                "operationId": "392ff11d2a24fa5bdd97e96d00537eeb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 2
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Set bearer token in header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Data deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": ""
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "IOT Reading"
+                ],
+                "summary": "Update data iot_reading",
+                "description": "Updates an existing iot_reading",
+                "operationId": "ebc5239eb9b74cc94a8a1346fe09a7eb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 2
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Set bearer token in header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updated user object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "responden_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "fetal_hr": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "resp_count": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "fetal_hr": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                },
+                                                "resp_count": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 13:43:25"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 14:11:33"
+                                                },
+                                                "deleted_at": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "responden_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/respondens/{id}": {
+            "put": {
+                "tags": [
+                    "Respondens"
+                ],
+                "summary": "Update data respondens",
+                "description": "Updates an existing respondens",
+                "operationId": "de8bbf1e882f7dd1fa74887bd0e248eb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the respondens",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Set bearer token in header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updated user object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama",
+                                    "kode",
+                                    "usia",
+                                    "paritas",
+                                    "kardiotokografi"
+                                ],
+                                "properties": {
+                                    "nama": {
+                                        "type": "string",
+                                        "example": "Jahfal"
+                                    },
+                                    "kode": {
+                                        "type": "string",
+                                        "example": "334"
+                                    },
+                                    "usia": {
+                                        "type": "integer",
+                                        "example": 20
+                                    },
+                                    "paritas": {
+                                        "type": "integer",
+                                        "example": null
+                                    },
+                                    "kardiotokografi": {
+                                        "type": "integer",
+                                        "example": null
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "Jahfal"
+                                                    },
+                                                    "kode": {
+                                                        "type": "string",
+                                                        "example": "334"
+                                                    },
+                                                    "usia": {
+                                                        "type": "integer",
+                                                        "example": 20
+                                                    },
+                                                    "his_adekuat": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    },
+                                                    "pergerakan": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    },
+                                                    "paritas": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    },
+                                                    "alamat": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-28 20:55:36"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-28 14:51:56"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for id"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The field is required."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/v1/sm-readings/{id}": {
+            "get": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Get smarwatch reading data",
+                "operationId": "ccf78e02197f77980dc9cc6ab670c617",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "spo2": {
+                                                    "type": "integer",
+                                                    "example": 125
+                                                },
+                                                "hr": {
+                                                    "type": "integer",
+                                                    "example": 70
+                                                },
+                                                "skin_temp": {
+                                                    "type": "integer",
+                                                    "example": 33
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-24 02:06:10"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-24 02:06:10"
+                                                },
+                                                "deleted_at": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "responden_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "responden": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "nama": {
+                                                            "type": "string",
+                                                            "example": "Valerica"
+                                                        },
+                                                        "kode": {
+                                                            "type": "string",
+                                                            "example": "ES101"
+                                                        },
+                                                        "usia": {
+                                                            "type": "integer",
+                                                            "example": 29
+                                                        },
+                                                        "his_adekuat": {
+                                                            "type": "string",
+                                                            "example": "0"
+                                                        },
+                                                        "pergerakan": {
+                                                            "type": "string",
+                                                            "example": "0"
+                                                        },
+                                                        "paritas": {
+                                                            "type": "integer",
+                                                            "example": null
+                                                        },
+                                                        "kardiotokografi": {
+                                                            "type": "integer",
+                                                            "example": null
+                                                        },
+                                                        "alamat": {
+                                                            "type": "string",
+                                                            "example": "Chateau de Versaille"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "string",
+                                                            "example": "2023-08-24 02:06:10"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "string",
+                                                            "example": "2023-08-24 02:06:10"
+                                                        },
+                                                        "deleted_at": {
+                                                            "type": "string",
+                                                            "example": null
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Get smarwatch reading data",
+                "operationId": "8990d2a2d8869ed4a463d567493b3b3b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "description": "User object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "responden_id",
+                                    "spo_2",
+                                    "hr",
+                                    "skin_temp"
+                                ],
+                                "properties": {
+                                    "responden_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "spo_2": {
+                                        "type": "integer",
+                                        "example": 125
+                                    },
+                                    "hr": {
+                                        "type": "integer",
+                                        "example": 70
+                                    },
+                                    "skin_temp": {
+                                        "type": "integer",
+                                        "example": 33
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "spo2": {
+                                                    "type": "integer",
+                                                    "example": 99
+                                                },
+                                                "hr": {
+                                                    "type": "integer",
+                                                    "example": 9
+                                                },
+                                                "skin_temp": {
+                                                    "type": "integer",
+                                                    "example": 9
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-24 02:06:10"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-24 02:06:10"
+                                                },
+                                                "deleted_at": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "responden_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data not found"
+                    },
+                    "422": {
+                        "description": "Missing field",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The hr field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "hr": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The hr field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Delete smarwatch reading data",
+                "operationId": "8a935a009b3804c0b903ba308a476d62",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data not found"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Get smarwatch reading data",
+                "operationId": "af591ab0fcf0d5b0ec61f846d9b5059c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id data",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "description": "User object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "responden_id",
+                                    "spo_2",
+                                    "hr",
+                                    "skin_temp"
+                                ],
+                                "properties": {
+                                    "responden_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "spo_2": {
+                                        "type": "integer",
+                                        "example": 125
+                                    },
+                                    "hr": {
+                                        "type": "integer",
+                                        "example": 70
+                                    },
+                                    "skin_temp": {
+                                        "type": "integer",
+                                        "example": 33
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Accepted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "spo2": {
+                                                    "type": "integer",
+                                                    "example": 99
+                                                },
+                                                "hr": {
+                                                    "type": "integer",
+                                                    "example": 9
+                                                },
+                                                "skin_temp": {
+                                                    "type": "integer",
+                                                    "example": 9
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-24 02:06:10"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-24 02:06:10"
+                                                },
+                                                "deleted_at": {
+                                                    "type": "string",
+                                                    "example": null
+                                                },
+                                                "responden_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Data not found"
+                    },
+                    "422": {
+                        "description": "Missing field",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The hr field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "hr": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The hr field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/iot-readings": {
+            "get": {
+                "tags": [
+                    "IOT Reading"
+                ],
+                "summary": "Get iot_reading data",
+                "operationId": "885d6aa1afe17dfc08395caea16a9ba3",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 2
+                                                    },
+                                                    "fetal_hr": {
+                                                        "type": "integer",
+                                                        "example": 20
+                                                    },
+                                                    "resp_count": {
+                                                        "type": "integer",
+                                                        "example": 99
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-28 13:43:25"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-28 13:43:25"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": null
+                                                    },
+                                                    "responden_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "responden": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "nama": {
+                                                                "type": "string",
+                                                                "example": "Jahfal"
+                                                            },
+                                                            "kode": {
+                                                                "type": "string",
+                                                                "example": "332"
+                                                            },
+                                                            "usia": {
+                                                                "type": "integer",
+                                                                "example": 19
+                                                            },
+                                                            "his_adekuat": {
+                                                                "type": "integer",
+                                                                "example": null
+                                                            },
+                                                            "pergerakan": {
+                                                                "type": "integer",
+                                                                "example": null
+                                                            },
+                                                            "paritas": {
+                                                                "type": "integer",
+                                                                "example": null
+                                                            },
+                                                            "alamat": {
+                                                                "type": "integer",
+                                                                "example": null
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2023-08-28 20:55:36"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2023-08-28 20:55:36"
+                                                            },
+                                                            "deleted_at": {
+                                                                "type": "integer",
+                                                                "example": null
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "IOT Reading"
+                ],
+                "summary": "Store data for iot reading",
+                "operationId": "bfaeda5b6d2a9e8b0e74fc9102fa4639",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Set bearer token in header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072"
+                    }
+                ],
+                "requestBody": {
+                    "description": "User object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "responden_id",
+                                    "fetal_hr",
+                                    "resp_count"
+                                ],
+                                "properties": {
+                                    "responden_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "fetal_hr": {
+                                        "type": "integer",
+                                        "example": 20
+                                    },
+                                    "resp_count": {
+                                        "type": "integer",
+                                        "example": 99
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Internal Server Error"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "responden_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "fetal_hr": {
+                                                    "type": "integer",
+                                                    "example": 20
+                                                },
+                                                "resp_count": {
+                                                    "type": "integer",
+                                                    "example": 99
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 13:43:25"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 13:43:25"
+                                                },
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The field is required."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/respondens": {
+            "get": {
+                "tags": [
+                    "Respondens"
+                ],
+                "summary": "Get respondens data",
+                "operationId": "e76ca8f3eea18234dc6e5892e5f67dec",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "nama": {
+                                                        "type": "string",
+                                                        "example": "Jahfal"
+                                                    },
+                                                    "kode": {
+                                                        "type": "string",
+                                                        "example": "332"
+                                                    },
+                                                    "usia": {
+                                                        "type": "integer",
+                                                        "example": 19
+                                                    },
+                                                    "his_adekuat": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    },
+                                                    "pergerakan": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    },
+                                                    "paritas": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    },
+                                                    "alamat": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-28 20:55:36"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-28 20:55:36"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "integer",
+                                                        "example": null
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Respondens"
+                ],
+                "summary": "Store data for iot reading",
+                "operationId": "8334166d9fa294a716f749b4d7525aeb",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Set bearer token in header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072"
+                    }
+                ],
+                "requestBody": {
+                    "description": "User object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama",
+                                    "kode",
+                                    "usia",
+                                    "paritas",
+                                    "kardiotokografi"
+                                ],
+                                "properties": {
+                                    "nama": {
+                                        "type": "string",
+                                        "example": "Jahfal"
+                                    },
+                                    "kode": {
+                                        "type": "string",
+                                        "example": "332"
+                                    },
+                                    "usia": {
+                                        "type": "integer",
+                                        "example": 19
+                                    },
+                                    "paritas": {
+                                        "type": "integer",
+                                        "example": null
+                                    },
+                                    "kardiotokografi": {
+                                        "type": "integer",
+                                        "example": null
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Internal Server Error"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "nama": {
+                                                    "type": "string",
+                                                    "example": "Jahfal"
+                                                },
+                                                "kode": {
+                                                    "type": "string",
+                                                    "example": "332"
+                                                },
+                                                "usia": {
+                                                    "type": "integer",
+                                                    "example": 19
+                                                },
+                                                "paritas": {
+                                                    "type": "integer",
+                                                    "example": null
+                                                },
+                                                "kardiotografi": {
+                                                    "type": "integer",
+                                                    "example": null
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 20:55:36"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-28 20:55:36"
+                                                },
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "Unauthenticated."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Content",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The field is required."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/sm-readings": {
+            "get": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Get smarwatch reading data",
+                "operationId": "e440ca1ce244b80fa434d97e9d57d721",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "spo2": {
+                                                        "type": "integer",
+                                                        "example": 125
+                                                    },
+                                                    "hr": {
+                                                        "type": "integer",
+                                                        "example": 70
+                                                    },
+                                                    "skin_temp": {
+                                                        "type": "integer",
+                                                        "example": 33
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2023-08-24 02:06:10"
+                                                    },
+                                                    "deleted_at": {
+                                                        "type": "string",
+                                                        "example": null
+                                                    },
+                                                    "responden_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "responden": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "nama": {
+                                                                "type": "string",
+                                                                "example": "Valerica"
+                                                            },
+                                                            "kode": {
+                                                                "type": "string",
+                                                                "example": "ES101"
+                                                            },
+                                                            "usia": {
+                                                                "type": "integer",
+                                                                "example": 29
+                                                            },
+                                                            "his_adekuat": {
+                                                                "type": "string",
+                                                                "example": "0"
+                                                            },
+                                                            "pergerakan": {
+                                                                "type": "string",
+                                                                "example": "0"
+                                                            },
+                                                            "paritas": {
+                                                                "type": "integer",
+                                                                "example": null
+                                                            },
+                                                            "kardiotokografi": {
+                                                                "type": "integer",
+                                                                "example": null
+                                                            },
+                                                            "alamat": {
+                                                                "type": "string",
+                                                                "example": "Chateau de Versaille"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "string",
+                                                                "example": "2023-08-24 02:06:10"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "string",
+                                                                "example": "2023-08-24 02:06:10"
+                                                            },
+                                                            "deleted_at": {
+                                                                "type": "string",
+                                                                "example": null
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/sm-readings": {
+            "post": {
+                "tags": [
+                    "SM Reading"
+                ],
+                "summary": "Store smarwatch reading data",
+                "operationId": "62e97ef29ba844a92b2114c32ac42376",
+                "requestBody": {
+                    "description": "User object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "responden_id",
+                                    "spo_2",
+                                    "hr",
+                                    "skin_temp"
+                                ],
+                                "properties": {
+                                    "responden_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "spo_2": {
+                                        "type": "integer",
+                                        "example": 125
+                                    },
+                                    "hr": {
+                                        "type": "integer",
+                                        "example": 70
+                                    },
+                                    "skin_temp": {
+                                        "type": "integer",
+                                        "example": 33
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "responden_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "spo2": {
+                                                    "type": "integer",
+                                                    "example": 125
+                                                },
+                                                "hr": {
+                                                    "type": "integer",
+                                                    "example": 70
+                                                },
+                                                "skin_temp": {
+                                                    "type": "integer",
+                                                    "example": 33
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-24 02:06:10"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2023-08-24 02:06:10"
+                                                },
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Missing field",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The hr field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "hr": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The hr field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
