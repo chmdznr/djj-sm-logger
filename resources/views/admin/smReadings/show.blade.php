@@ -55,6 +55,22 @@
                             {{ $smReading->skin_temp }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.smReading.fields.created_at') }}
+                        </th>
+                        <td>
+                            {{ $smReading->created_at }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.smReading.fields.updated_at') }}
+                        </th>
+                        <td>
+                            {{ $smReading->updated_at }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

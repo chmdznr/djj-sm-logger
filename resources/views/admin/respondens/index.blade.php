@@ -144,19 +144,19 @@
     aaSorting: [],
     ajax: "{{ route('admin.respondens.index') }}",
     columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'nama', name: 'nama' },
-{ data: 'kode', name: 'kode' },
-{ data: 'usia', name: 'usia' },
-{ data: 'his_adekuat', name: 'his_adekuat' },
-{ data: 'pergerakan', name: 'pergerakan' },
-{ data: 'paritas', name: 'paritas' },
-{ data: 'kardiotokografi', name: 'kardiotokografi' },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
+    { data: 'placeholder', name: 'placeholder' },
+    { data: 'id', name: 'id' },
+    { data: 'nama', name: 'nama' },
+    { data: 'kode', name: 'kode' },
+    { data: 'usia', name: 'usia' },
+    { data: 'his_adekuat', name: 'his_adekuat' },
+    { data: 'pergerakan', name: 'pergerakan' },
+    { data: 'paritas', name: 'paritas' },
+    { data: 'kardiotokografi', name: 'kardiotokografi' },
+    { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    order: [[ 0, 'desc' ]],
     pageLength: 100,
   };
   let table = $('.datatable-Responden').DataTable(dtOverrideGlobals);
@@ -167,18 +167,26 @@
   
 let visibleColumnsIndexes = null;
 $('.datatable thead').on('input', '.search', function () {
-      let strict = $(this).attr('strict') || false
-      let value = strict && this.value ? "^" + this.value + "$" : this.value
+    let strict = $(this).attr('strict') || false
+    let value = strict && this.value ? "^" + this.value + "$" : this.value
 
-      let index = $(this).parent().index()
-      if (visibleColumnsIndexes !== null) {
+    let index = $(this).parent().index()
+    if (visibleColumnsIndexes !== null) {
         index = visibleColumnsIndexes[index]
-      }
+    }
 
-      table
-        .column(index)
-        .search(value, strict)
-        .draw()
+    if (value.toLowerCase() === 'all') {
+        table
+            .column(index)
+            .search('')
+            .draw();
+    } else {
+        table
+            .column(index)
+            .search(value, strict)
+            .draw();
+    }
+
   });
 table.on('column-visibility.dt', function(e, settings, column, state) {
       visibleColumnsIndexes = []
@@ -187,6 +195,7 @@ table.on('column-visibility.dt', function(e, settings, column, state) {
       });
   })
 });
+
 
 </script>
 @endsection

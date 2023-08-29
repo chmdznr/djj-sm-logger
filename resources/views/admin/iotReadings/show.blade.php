@@ -47,6 +47,22 @@
                             {{ $iotReading->resp_count }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.iotReading.fields.created_at') }}
+                        </th>
+                        <td>
+                            {{ $iotReading->created_at }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.iotReading.fields.updated_at') }}
+                        </th>
+                        <td>
+                            {{ $iotReading->updated_at }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

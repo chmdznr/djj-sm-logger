@@ -45,23 +45,27 @@ class SmReadingController extends Controller
             });
 
             $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
+                return isset($row->id) ? $row->id : '';
             });
+            
             $table->addColumn('responden_nama', function ($row) {
-                return $row->responden ? $row->responden->nama : '';
+                return isset($row->responden) ? ($row->responden->nama ?? '') : '';
             });
-
+            
             $table->editColumn('responden.kode', function ($row) {
-                return $row->responden ? (is_string($row->responden) ? $row->responden : $row->responden->kode) : '';
+                return isset($row->responden) ? (is_string($row->responden) ? $row->responden : ($row->responden->kode ?? '')) : '';
             });
+            
             $table->editColumn('spo_2', function ($row) {
-                return $row->spo_2 ? $row->spo_2 : '';
+                return isset($row->spo_2) ? $row->spo_2 : '';
             });
+            
             $table->editColumn('hr', function ($row) {
-                return $row->hr ? $row->hr : '';
+                return isset($row->hr) ? $row->hr : '';
             });
+            
             $table->editColumn('skin_temp', function ($row) {
-                return $row->skin_temp ? $row->skin_temp : '';
+                return isset($row->skin_temp) ? $row->skin_temp : '';
             });
 
             $table->rawColumns(['actions', 'placeholder', 'responden']);

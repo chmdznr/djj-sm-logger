@@ -46,28 +46,33 @@ class RespondenController extends Controller
             });
 
             $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
+                return isset($row->id) ? $row->id : '';
             });
+            
             $table->editColumn('nama', function ($row) {
-                return $row->nama ? $row->nama : '';
+                return isset($row->nama) ? $row->nama : '';
             });
+            
             $table->editColumn('kode', function ($row) {
-                return $row->kode ? $row->kode : '';
+                return isset($row->kode) ? $row->kode : '';
             });
+            
             $table->editColumn('usia', function ($row) {
-                return $row->usia ? $row->usia : '';
+                return isset($row->usia) ? $row->usia : '';
             });
+            
             $table->editColumn('his_adekuat', function ($row) {
-                return $row->his_adekuat ? Responden::HIS_ADEKUAT_RADIO[$row->his_adekuat] : '';
+                return isset($row->his_adekuat) ? Responden::HIS_ADEKUAT_RADIO[$row->his_adekuat] : '';
             });
+            
             $table->editColumn('pergerakan', function ($row) {
-                return $row->pergerakan ? Responden::PERGERAKAN_RADIO[$row->pergerakan] : '';
+                return isset($row->pergerakan) ? Responden::PERGERAKAN_RADIO[$row->pergerakan] : '';
             });
             $table->editColumn('paritas', function ($row) {
-                return $row->paritas ? $row->paritas : '';
+                return isset($row->paritas) ? $row->paritas : '';
             });
             $table->editColumn('kardiotokografi', function ($row) {
-                return $row->kardiotokografi ? $row->kardiotokografi : '';
+                return isset($row->kardiotokografi) ? $row->kardiotokografi : '';
             });
 
             $table->rawColumns(['actions', 'placeholder']);

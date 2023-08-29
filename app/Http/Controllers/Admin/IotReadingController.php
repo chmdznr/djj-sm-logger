@@ -45,21 +45,25 @@ class IotReadingController extends Controller
             });
 
             $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
+                return isset($row->id) ? $row->id : '';
             });
+            
             $table->addColumn('responden_nama', function ($row) {
-                return $row->responden ? $row->responden->nama : '';
+                return isset($row->responden) ? ($row->responden->nama ?? '') : '';
             });
-
+            
             $table->editColumn('responden.kode', function ($row) {
-                return $row->responden ? (is_string($row->responden) ? $row->responden : $row->responden->kode) : '';
+                return isset($row->responden) ? (is_string($row->responden) ? $row->responden : ($row->responden->kode ?? '')) : '';
             });
+            
             $table->editColumn('fetal_hr', function ($row) {
-                return $row->fetal_hr ? $row->fetal_hr : '';
+                return isset($row->fetal_hr) ? $row->fetal_hr : '';
             });
+            
             $table->editColumn('resp_count', function ($row) {
-                return $row->resp_count ? $row->resp_count : '';
+                return isset($row->resp_count) ? $row->resp_count : '';
             });
+            
 
             $table->rawColumns(['actions', 'placeholder', 'responden']);
 
