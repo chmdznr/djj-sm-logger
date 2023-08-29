@@ -1856,11 +1856,11 @@
                                     },
                                     "password": {
                                         "type": "string",
-                                        "example": "lolllllll"
+                                        "example": "passwordjuga"
                                     },
                                     "c_password": {
                                         "type": "string",
-                                        "example": "lolllllll"
+                                        "example": "passwordjuga"
                                     }
                                 },
                                 "type": "object"
@@ -1929,7 +1929,19 @@
                                     "properties": {
                                         "message": {
                                             "type": "string",
-                                            "example": "The field is required."
+                                            "example": "The email field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "resp_count": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The email field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"
@@ -1954,19 +1966,17 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "name",
                                     "email",
-                                    "password",
-                                    "c_password"
+                                    "password"
                                 ],
                                 "properties": {
                                     "email": {
                                         "type": "string",
-                                        "example": "rayna@wynniecomp.com"
+                                        "example": "admin@admin.com"
                                     },
                                     "password": {
                                         "type": "string",
-                                        "example": "lolllllll"
+                                        "example": "password"
                                     }
                                 },
                                 "type": "object"
@@ -2035,7 +2045,19 @@
                                     "properties": {
                                         "message": {
                                             "type": "string",
-                                            "example": "The field is required."
+                                            "example": "The email field is required."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "resp_count": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The email field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"

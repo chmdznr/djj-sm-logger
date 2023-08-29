@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+use App\Http\Requests\AuthLoginRequest;
+use App\Http\Requests\AuthRegisterRequest;
+
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:sanctum', ['except' => ['login', 'register']]);
-    }
-
     /**
      * Register api
      *
@@ -45,12 +43,12 @@ class AuthController extends Controller
      *                 @OA\Property(
      *                     property="password",
      *                     type="string",
-     *                     example="lolllllll"
+     *                     example="passwordjuga"
      *                 ),
      *                 @OA\Property(
      *                     property="c_password",
      *                     type="string",
-     *                     example="lolllllll"
+     *                     example="passwordjuga"
      *                 ),
      *             )
      *         )
@@ -69,28 +67,25 @@ class AuthController extends Controller
      *            
      *          )
      *      )),
-     *      @OA\Response(response="422", description="Unprocessable Content",
-     *         @OA\JsonContent(
-     *            type="object",
-     *            @OA\Property(property="message", type="string", example="The field is required.")
+     *     @OA\Response(response="422", description="Unprocessable Content",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The email field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="email", type="array",
+     *              @OA\Items(type="string", example="The email field is required.")
+     *            ),
      *         )
-     *      ),
+     *     ),
+     *     ),
      *    
      *     ),
      *   )
      */
-    public function register(Request $request)
+    public function register(AuthRegisterRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
-        ]);
-
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $user = User::create($request->all());
+        $user->roles()->sync(1);
         
         $success['access_token'] = $user->createToken('MyApp')->plainTextToken;
         $success['token_type'] = 'Bearer';
@@ -116,16 +111,16 @@ class AuthController extends Controller
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *                 required={"name", "email", "password", "c_password"},
+     *                 required={"email", "password"},
      *                 @OA\Property(
      *                     property="email",
      *                     type="string",
-     *                     example="rayna@wynniecomp.com"
+     *                     example="admin@admin.com"
      *                 ),
      *                 @OA\Property(
      *                     property="password",
      *                     type="string",
-     *                     example="lolllllll"
+     *                     example="password"
      *                 )
      *             )
      *         )
@@ -144,23 +139,23 @@ class AuthController extends Controller
      *            
      *          )
      *      )),
-     *      @OA\Response(response="422", description="Unprocessable Content",
-     *         @OA\JsonContent(
-     *            type="object",
-     *            @OA\Property(property="message", type="string", example="The field is required.")
+     *     @OA\Response(response="422", description="Unprocessable Content",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The email field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="email", type="array",
+     *              @OA\Items(type="string", example="The email field is required.")
+     *            ),
      *         )
-     *      ),
+     *     ),
+     *     ),
      *    
      *     ),
      *   )
      */
-    public function login(Request $request)
+    public function login(AuthLoginRequest $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
             $success['access_token'] = $user->createToken('MyApp')->plainTextToken;
@@ -169,7 +164,8 @@ class AuthController extends Controller
 
             return response($success, 200);
         } else {
-            return response('Unauthorized', 401);
+            $res['message'] = "Unauthenticated.";
+            return response($res, 401);
         }
     }
 
@@ -205,7 +201,7 @@ class AuthController extends Controller
      *  )
      */
 
-    public function revoke(Request $request)
+    public function revoke()
     {
         Auth::user()->currentAccessToken()->delete();
         return response('', 204);
