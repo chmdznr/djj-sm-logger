@@ -87,6 +87,22 @@
                             {!! $responden->alamat !!}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.responden.fields.created_at') }}
+                        </th>
+                        <td>
+                            {{ $responden->created_at }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.responden.fields.updated_at') }}
+                        </th>
+                        <td>
+                            {{ $responden->updated_at }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

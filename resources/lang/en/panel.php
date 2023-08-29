@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'site_title' => 'Smartwatch Data Logger',
+    'site_title' => 'Smartwatch Data',
 
 ];
