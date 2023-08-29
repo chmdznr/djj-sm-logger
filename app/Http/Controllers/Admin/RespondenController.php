@@ -46,34 +46,40 @@ class RespondenController extends Controller
             });
 
             $table->editColumn('id', function ($row) {
-                return isset($row->id) ? $row->id : '';
+                return $row->id ?? '';
             });
             
             $table->editColumn('nama', function ($row) {
-                return isset($row->nama) ? $row->nama : '';
+                return $row->nama ?? '';
             });
             
             $table->editColumn('kode', function ($row) {
-                return isset($row->kode) ? $row->kode : '';
+                return $row->kode ?? '';
             });
             
             $table->editColumn('usia', function ($row) {
-                return isset($row->usia) ? $row->usia : '';
+                return $row->usia ?? '';
             });
             
             $table->editColumn('his_adekuat', function ($row) {
-                return isset($row->his_adekuat) ? Responden::HIS_ADEKUAT_RADIO[$row->his_adekuat] : '';
+                $adekuatValue = isset($row->his_adekuat) ? $row->his_adekuat : null;
+                return isset(Responden::HIS_ADEKUAT_RADIO[$adekuatValue]) ? Responden::HIS_ADEKUAT_RADIO[$adekuatValue] : '';
             });
             
             $table->editColumn('pergerakan', function ($row) {
-                return isset($row->pergerakan) ? Responden::PERGERAKAN_RADIO[$row->pergerakan] : '';
+                $pergerakanValue = isset($row->pergerakan) ? $row->pergerakan : null;
+                return isset(Responden::PERGERAKAN_RADIO[$pergerakanValue]) ? Responden::PERGERAKAN_RADIO[$pergerakanValue] : '';
             });
+            
+            
             $table->editColumn('paritas', function ($row) {
-                return isset($row->paritas) ? $row->paritas : '';
+                return $row->paritas ?? '';
             });
+            
             $table->editColumn('kardiotokografi', function ($row) {
-                return isset($row->kardiotokografi) ? $row->kardiotokografi : '';
+                return $row->kardiotokografi ?? '';
             });
+            
 
             $table->rawColumns(['actions', 'placeholder']);
 

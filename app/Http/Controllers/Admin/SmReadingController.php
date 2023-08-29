@@ -53,7 +53,7 @@ class SmReadingController extends Controller
             });
             
             $table->editColumn('responden.kode', function ($row) {
-                return isset($row->responden) ? (is_string($row->responden) ? $row->responden : ($row->responden->kode ?? '')) : '';
+                return is_string($row->responden) ? $row->responden : ($row->responden->kode ?? '');
             });
             
             $table->editColumn('spo_2', function ($row) {
@@ -67,7 +67,9 @@ class SmReadingController extends Controller
             $table->editColumn('skin_temp', function ($row) {
                 return isset($row->skin_temp) ? $row->skin_temp : '';
             });
-
+            
+   
+            
             $table->rawColumns(['actions', 'placeholder', 'responden']);
 
             return $table->make(true);
