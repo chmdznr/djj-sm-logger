@@ -21,6 +21,16 @@ class RespondenApiController extends Controller
      *     path="/respondens",
      *     summary="Get respondens data",
      *     tags={"Respondens"},
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *     @OA\Response(response="200", description="Success",
      *     @OA\JsonContent(
      *          type="object",
@@ -28,7 +38,7 @@ class RespondenApiController extends Controller
      *              @OA\Items(
      *                  type="object",
      *                  @OA\Property(property="id", type="integer", example=1),
-     *                  @OA\Property(property="nama", type="string", example="Jahfal"),
+     *                  @OA\Property(property="nama", type="string", example="Jimans"),
      *                  @OA\Property(property="kode", type="string", example="332"),
      *                  @OA\Property(property="usia", type="integer", example=19),
      *                  @OA\Property(property="his_adekuat", type="integer", example=null),
@@ -42,18 +52,19 @@ class RespondenApiController extends Controller
      *         )
      *     ) 
      *     ),
-     *     @OA\Response(response="401", description="Unauthorized",
+     *     @OA\Response(response="401", description="Unauthenticated",
      *         @OA\JsonContent(
      *            type="object",
      *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
      *         )
      *      ),
+     *     @OA\Response(response="403", description="Unauthorized"),
      *   ),
      */
 
     public function index()
     {
-        abort_if(Gate::denies('responden_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('responden_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new RespondenResource(Responden::all());
     }
@@ -63,7 +74,7 @@ class RespondenApiController extends Controller
      *     path="/respondens",
      *     summary="Store data for iot reading",
      *     tags={"Respondens"},
-     *      @OA\Parameter(
+     *     @OA\Parameter(
      *         name="Authorization",
      *         required=true,
      *         in="header",
@@ -83,7 +94,7 @@ class RespondenApiController extends Controller
      *                 @OA\Property(
      *                     property="nama",
      *                     type="string",
-     *                     example="Jahfal"
+     *                     example="Jimans"
      *                 ),
      *                 @OA\Property(
      *                     property="kode",
@@ -113,7 +124,7 @@ class RespondenApiController extends Controller
      *          @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="data", type="object",
-     *              @OA\Property(property="nama", type="string", example="Jahfal"),
+     *              @OA\Property(property="nama", type="string", example="Jimans"),
      *              @OA\Property(property="kode", type="string", example="332"),
      *              @OA\Property(property="usia", type="integer", example=19),
      *              @OA\Property(property="paritas", type="integer", example=null),
@@ -124,18 +135,23 @@ class RespondenApiController extends Controller
      *         )
      *     )
      *      ),
-     *      @OA\Response(response="401", description="Unauthorized",
+     *      @OA\Response(response="401", description="Unauthenticated",
      *         @OA\JsonContent(
      *            type="object",
      *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
      *         )
      *      ),
-     *      @OA\Response(response="422", description="Unprocessable Content",
-     *         @OA\JsonContent(
-     *            type="object",
-     *            @OA\Property(property="message", type="string", example="The field is required.")
+     *     @OA\Response(response="403", description="Unauthorized"),
+     *     @OA\Response(response="422", description="Missing field",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The usia field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="usia", type="array",
+     *              @OA\Items(type="string", example="The usia field is required.")
+     *            ),
      *         )
-     *      ),
+     *     ),
      *    
      *     ),
      *   )
@@ -150,9 +166,56 @@ class RespondenApiController extends Controller
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/respondens/{id}",
+     *     summary="Get respondens data",
+     *     tags={"Respondens"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id data",
+     *         required=true,
+     *         example=1,
+     *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(response="200", description="Success",
+     *     @OA\JsonContent(
+     *          type="object",
+     *          @OA\Property(property="data", type="object",
+     *              @OA\Property(property="id", type="integer", example=1),
+     *              @OA\Property(property="nama", type="string", example="Jimans"),
+     *              @OA\Property(property="kode", type="string", example="332"),
+     *              @OA\Property(property="usia", type="integer", example=19),
+     *              @OA\Property(property="his_adekuat", type="integer", example=null),
+     *              @OA\Property(property="pergerakan", type="integer", example=null),
+     *              @OA\Property(property="paritas", type="integer", example=null),
+     *              @OA\Property(property="alamat", type="integer", example=null),
+     *              @OA\Property(property="created_at", type="string", example="2023-08-28 20:55:36"),
+     *              @OA\Property(property="updated_at", type="string", example="2023-08-28 20:55:36"),
+     *              @OA\Property(property="deleted_at", type="integer", example=null),
+     *          )
+     *     ) 
+     *     ),
+     *     @OA\Response(response="401", description="Unauthenticated"),
+     *     @OA\Response(response="403", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Data not found"),
+     *   ),
+     */
+
     public function show(Responden $responden)
     {
-        abort_if(Gate::denies('responden_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('responden_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new RespondenResource($responden);
     }
@@ -192,7 +255,7 @@ class RespondenApiController extends Controller
      *                 @OA\Property(
      *                     property="nama",
      *                     type="string",
-     *                     example="Jahfal"
+     *                     example="Jimans"
      *                 ),
      *                 @OA\Property(
      *                     property="kode",
@@ -226,7 +289,107 @@ class RespondenApiController extends Controller
      *                  @OA\Items(
      *                      type="object",
      *                      @OA\Property(property="id", type="integer", example=1),
-     *                      @OA\Property(property="nama", type="string", example="Jahfal"),
+     *                      @OA\Property(property="nama", type="string", example="Jimans"),
+     *                      @OA\Property(property="kode", type="string", example="334"),
+     *                      @OA\Property(property="usia", type="integer", example=20),
+     *                      @OA\Property(property="his_adekuat", type="integer", example=null),
+     *                      @OA\Property(property="pergerakan", type="integer", example=null),
+     *                      @OA\Property(property="paritas", type="integer", example=null),
+     *                      @OA\Property(property="alamat", type="integer", example=null),
+     *                      @OA\Property(property="created_at", type="string", example="2023-08-28 20:55:36"),
+     *                      @OA\Property(property="updated_at", type="string", example="2023-08-28 14:51:56"),
+     *                      @OA\Property(property="deleted_at", type="integer", example=null),
+     *                 )
+     *             )    
+     *         )
+     *     ),
+     *     @OA\Response(response=404, description="Data not Found",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )),
+     *     @OA\Response(response=401, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )
+     *     ),
+     *     @OA\Response(response=422, description="Unprocessable Content",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="string", example="The field is required.")
+     *         )
+     *      ),
+     *     @OA\Response(response=500, description="Internal Server Error"),
+     *     
+     *    ),
+     *  @OA\Patch(
+     *     tags={"Respondens"},
+     *     summary="Update data respondens",
+     *     description="Updates an existing respondens",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the respondens",
+     *         required=true,
+     *         example=1,
+     *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Updated user object",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"nama", "kode", "usia", "paritas", "kardiotokografi"},
+     *                 @OA\Property(
+     *                     property="nama",
+     *                     type="string",
+     *                     example="Jimans"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="kode",
+     *                     type="string",
+     *                     example="334"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="usia",
+     *                     type="integer",
+     *                     example=20
+     *                 ),
+     *                 @OA\Property(
+     *                     property="paritas",
+     *                     type="integer",
+     *                     example=null
+     *                 ),
+     *                 @OA\Property(
+     *                     property="kardiotokografi",
+     *                     type="integer",
+     *                     example=null
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=202,
+     *         description="Accepted",
+     *         @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="data", type="array",
+     *                  @OA\Items(
+     *                      type="object",
+     *                      @OA\Property(property="id", type="integer", example=1),
+     *                      @OA\Property(property="nama", type="string", example="Jimans"),
      *                      @OA\Property(property="kode", type="string", example="334"),
      *                      @OA\Property(property="usia", type="integer", example=20),
      *                      @OA\Property(property="his_adekuat", type="integer", example=null),
@@ -263,12 +426,7 @@ class RespondenApiController extends Controller
      *     @OA\Response(response=500, description="Internal Server Error"),
      *     
      *    ),
-     *     
      *  ),
-     * 
-     *  
-     * 
-     * )
      */
 
     public function update(UpdateRespondenRequest $request, Responden $responden)
@@ -280,9 +438,42 @@ class RespondenApiController extends Controller
             ->setStatusCode(Response::HTTP_ACCEPTED);
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/respondens/{id}",
+     *     summary="Delete responden data",
+     *     tags={"Respondens"},
+     *      @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Id data",
+     *         required=true,
+     *         example=1,
+     *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(response="204", description="Success",
+     *         @OA\JsonContent(example="")
+     *     ),
+     *     @OA\Response(response="401", description="Unauthenticated"),
+     *     @OA\Response(response="403", description="Unauthorized"),
+     *     @OA\Response(response="404", description="Data not found"
+     * ),
+     * ),
+     */
+
     public function destroy(Responden $responden)
     {
-        abort_if(Gate::denies('responden_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('responden_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $responden->delete();
 

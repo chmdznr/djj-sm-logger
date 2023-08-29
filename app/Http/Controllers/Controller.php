@@ -8,16 +8,16 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
  * @OA\Info(
- *     title="Pregnancy Api",
+ *     title="DJJ Logger API",
  *     version="1.0.0",
- *     description="Deskripsi API"
+ *     description="Data logger management for fetal heart rate using IoT and smartwatch"
  * )
  * 
  * 
  * 
  * @OA\Server(
  *     url=L5_SWAGGER_CONST_HOST,
- *     description="Pregnancy API Server"
+ *     description="Fetal Heart Rate Data Logger"
  * )
  */
 

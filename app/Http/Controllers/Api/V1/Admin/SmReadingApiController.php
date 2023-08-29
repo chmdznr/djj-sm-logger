@@ -15,9 +15,19 @@ class SmReadingApiController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/v1/sm-readings",
+     *     path="/sm-readings",
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *     @OA\Response(response="200", description="Success",
      *     @OA\JsonContent(
      *         type="object",
@@ -51,8 +61,18 @@ class SmReadingApiController extends Controller
      *         )
      *     )
      * ),
-     *     @OA\Response(response="401", description="Unauthenticated"),
-     *     @OA\Response(response="403", description="Unauthorized"),
+     *      @OA\Response(response="401", description="Unauthenticated",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )
+     *      ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
      *),
      */
 
@@ -68,6 +88,16 @@ class SmReadingApiController extends Controller
      *     path="/sm-readings",
      *     summary="Store smarwatch reading data",
      *     tags={"SM Reading"},
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *     @OA\RequestBody(
      *         required=true,
      *         description="User object",
@@ -112,8 +142,18 @@ class SmReadingApiController extends Controller
      *         )
      *     )
      *     ),
-     *     @OA\Response(response="401", description="Unauthenticated"),
-     *     @OA\Response(response="403", description="Unauthorized"),
+     *      @OA\Response(response="401", description="Unauthenticated",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )
+     *      ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
      *     @OA\Response(response="422", description="Missing field",
      *     @OA\JsonContent(
      *         type="object",
@@ -141,7 +181,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/v1/sm-readings/{id}",
+     *     path="/sm-readings/{id}",
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
      *      @OA\Parameter(
@@ -151,6 +191,16 @@ class SmReadingApiController extends Controller
      *         required=true,
      *         example=1,
      *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
      *     ),
      *     @OA\Response(response="200", description="Success",
      *     @OA\JsonContent(
@@ -183,9 +233,24 @@ class SmReadingApiController extends Controller
      *          )
      *     ),
      * 
-     *     @OA\Response(response="401", description="Unauthenticated"),
-     *     @OA\Response(response="403", description="Unauthorized"),
-     *     @OA\Response(response="404", description="Data not found"),
+     *      @OA\Response(response="401", description="Unauthenticated",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )
+     *      ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
+     *      @OA\Response(response=404, description="Resource Not Found",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\SmReading] 1")
+     *          )
+     *      ),
      * ),
      */
 
@@ -198,7 +263,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\PathItem(
-     *   path="/api/v1/sm-readings/{id}",
+     *   path="/sm-readings/{id}",
      *   @OA\Put(
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
@@ -209,6 +274,16 @@ class SmReadingApiController extends Controller
      *         required=true,
      *         example=1,
      *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
      *     ),
      *     @OA\RequestBody(
      *         required=true,
@@ -255,9 +330,24 @@ class SmReadingApiController extends Controller
      *         )
      *     )
      *   ),
-     *   @OA\Response(response="401", description="Unauthenticated"),
-     *   @OA\Response(response="403", description="Unauthorized"),
-     *   @OA\Response(response="404", description="Data not found"),
+     *      @OA\Response(response="401", description="Unauthenticated",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )
+     *      ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
+     *      @OA\Response(response=404, description="Resource Not Found",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\SmReading] 1")
+     *          )
+     *      ),
      *     @OA\Response(response="422", description="Missing field",
      *     @OA\JsonContent(
      *         type="object",
@@ -282,6 +372,16 @@ class SmReadingApiController extends Controller
      *         example=1,
      *         @OA\Schema(type="integer", format="int64")
      *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *     @OA\RequestBody(
      *         required=true,
      *         description="User object",
@@ -327,9 +427,24 @@ class SmReadingApiController extends Controller
      *         )
      *     )
      *   ),
-     *   @OA\Response(response="401", description="Unauthenticated"),
-     *   @OA\Response(response="403", description="Unauthorized"),
-     *   @OA\Response(response="404", description="Data not found"),
+     *      @OA\Response(response="401", description="Unauthenticated",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )
+     *      ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
+     *      @OA\Response(response=404, description="Resource Not Found",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\SmReading] 1")
+     *          )
+     *      ),
      *     @OA\Response(response="422", description="Missing field",
      *     @OA\JsonContent(
      *         type="object",
@@ -357,7 +472,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/v1/sm-readings/{id}",
+     *     path="/sm-readings/{id}",
      *     summary="Delete smarwatch reading data",
      *     tags={"SM Reading"},
      *      @OA\Parameter(
@@ -368,10 +483,37 @@ class SmReadingApiController extends Controller
      *         example=1,
      *         @OA\Schema(type="integer", format="int64")
      *     ),
-     *     @OA\Response(response="204", description="Success"),
-     *     @OA\Response(response="401", description="Unauthenticated"),
-     *     @OA\Response(response="403", description="Unauthorized"),
-     *     @OA\Response(response="404", description="Data not found"),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         required=true,
+     *         in="header",
+     *         description="Set bearer token in header",
+     *         example="Bearer 9|laravel_sanctum_6MQgJnERrszCWjo1nXCOgnY9AJtkV0vnz5K9X7IY10949072",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(response="204", description="Success",
+     *         @OA\JsonContent(example="")
+     *     ),
+     *      @OA\Response(response="401", description="Unauthenticated",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )
+     *      ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
+     *      @OA\Response(response=404, description="Resource Not Found",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\SmReading] 1")
+     *          )
+     *      ),
      * ),
      */
 

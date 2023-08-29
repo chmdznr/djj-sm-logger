@@ -49,12 +49,18 @@ class IotReadingApiController extends Controller
      *         )
      *     ) 
      *     ),
-     *     @OA\Response(response="401", description="Unauthorized",
+     *     @OA\Response(response="401", description="Unauthenticated",
      *         @OA\JsonContent(
      *            type="object",
      *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
      *         )
-     *      ),
+     *     ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
      *   ),
      */
     public function index()
@@ -118,18 +124,29 @@ class IotReadingApiController extends Controller
      *         )
      *          )
      *      ),
-     *      @OA\Response(response="401", description="Unauthorized",
+     *      @OA\Response(response="401", description="Unauthenticated",
      *         @OA\JsonContent(
      *            type="object",
      *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
      *         )
      *      ),
-     *      @OA\Response(response="422", description="Unprocessable Content",
+     *     @OA\Response(response=403, description="Unauthorized",
      *         @OA\JsonContent(
      *            type="object",
-     *            @OA\Property(property="message", type="string", example="The field is required.")
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
      *         )
-     *      ),
+     *     ),
+     *     @OA\Response(response="422", description="Missing field",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The resp count field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="resp_count", type="array",
+     *              @OA\Items(type="string", example="The resp count field is required.")
+     *            ),
+     *         )
+     *     ),
+     *     ),
      *    
      *     ),
      *   )
@@ -189,13 +206,25 @@ class IotReadingApiController extends Controller
      *              )
      *          )
      *       ),
-     *      @OA\Response(response=500, description="Internal Server Error"),
+     *      @OA\Response(response="401", description="Unauthenticated",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
+     *         )
+     *      ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
      *      @OA\Response(response=404, description="Resource Not Found",
      *          @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="message", type="string", example="No query results for id")
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\IotReading] 2")
      *          )
      *      ),
+     *      @OA\Response(response=500, description="Internal Server Error"),
      *  ),
      */
 
@@ -276,21 +305,32 @@ class IotReadingApiController extends Controller
      *         description="Not Found",
      *         @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="message", type="string", example="No query results for id")
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\IotReading] 2")
      *          )
      *     ),
-     *     @OA\Response(response="401", description="Unauthorized",
+     *     @OA\Response(response=401, description="Unauthenticated",
      *         @OA\JsonContent(
      *            type="object",
      *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
      *         )
      *     ),
-     *     @OA\Response(response="422", description="Unprocessable Content",
+     *     @OA\Response(response=403, description="Unauthorized",
      *         @OA\JsonContent(
      *            type="object",
-     *            @OA\Property(property="message", type="string", example="The field is required.")
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
      *         )
-     *      ),
+     *     ),
+     *     @OA\Response(response="422", description="Missing field",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The resp count field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="resp_count", type="array",
+     *              @OA\Items(type="string", example="The resp count field is required.")
+     *            ),
+     *         )
+     *     ),
+     *     ),
      *     @OA\Response(response=500, description="Internal Server Error"),
      *     
      *    ),
@@ -364,18 +404,33 @@ class IotReadingApiController extends Controller
      *         description="Not Found",
      *         @OA\JsonContent(
      *              type="object",
-     *              @OA\Property(property="message", type="string", example="No query results for id")
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\IotReading] 2")
      *          )
      *     ),
-     *     @OA\Response(response="401", description="Unauthorized",
+     *     @OA\Response(response=401, description="Unauthenticated",
      *         @OA\JsonContent(
      *            type="object",
      *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
      *         )
      *     ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
+     *     ),
+     *     @OA\Response(response="422", description="Missing field",
+     *     @OA\JsonContent(
+     *         type="object",
+     *         @OA\Property(property="message", type="string", example="The resp count field is required."),
+     *         @OA\Property(property="errors", type="object",
+     *            @OA\Property(property="resp_count", type="array",
+     *              @OA\Items(type="string", example="The resp count field is required.")
+     *            ),
+     *         )
+     *     ),
+     *     ),
      *     @OA\Response(response=500, description="Internal Server Error"),
-     * 
-     *     
      *    ),
      *     
      *  ),
@@ -420,21 +475,25 @@ class IotReadingApiController extends Controller
      *         description="Data deleted successfully",
      *         @OA\JsonContent(example="")
      *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Data not found",
-     *         @OA\JsonContent(
-     *              type="object",
-     *              @OA\Property(property="message", type="string", example="No query results for id")
-     *          )
-     *     ),
-     *     @OA\Response(response="401", description="Unauthorized",
+     *      @OA\Response(response="401", description="Unauthenticated",
      *         @OA\JsonContent(
      *            type="object",
      *            @OA\Property(property="message", type="integer", example="Unauthenticated.")
      *         )
+     *      ),
+     *     @OA\Response(response=403, description="Unauthorized",
+     *         @OA\JsonContent(
+     *            type="object",
+     *            @OA\Property(property="message", type="integer", example="This action is unauthorized.")
+     *         )
      *     ),
-     *     @OA\Response(response=500, description="Internal Server Error"),
+     *      @OA\Response(response=404, description="Resource Not Found",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="message", type="string", example="No query results for model [App\\Models\\IotReading] 2")
+     *          )
+     *      ),
+     *      @OA\Response(response=500, description="Internal Server Error"),
      * 
      *     
      *    ),
