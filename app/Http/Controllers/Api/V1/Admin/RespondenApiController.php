@@ -67,7 +67,7 @@ class RespondenApiController extends Controller
 
     public function index()
     {
-        // abort_if(Gate::denies('responden_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('responden_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new RespondenResource(Responden::all());
     }
@@ -127,14 +127,17 @@ class RespondenApiController extends Controller
      *          @OA\JsonContent(
      *          type="object",
      *          @OA\Property(property="data", type="object",
-     *              @OA\Property(property="nama", type="string", example="Jimans"),
-     *              @OA\Property(property="kode", type="string", example="332"),
-     *              @OA\Property(property="usia", type="integer", example=19),
-     *              @OA\Property(property="paritas", type="integer", example=null),
-     *              @OA\Property(property="kardiotografi", type="integer", example=null),
-     *              @OA\Property(property="created_at", type="string", example="2023-08-28 20:55:36"),
-     *              @OA\Property(property="updated_at", type="string", example="2023-08-28 20:55:36"),
-     *              @OA\Property(property="id", type="integer", example=1),
+     *                      @OA\Property(property="id", type="integer", example=1),
+     *                      @OA\Property(property="nama", type="string", example="Jimans"),
+     *                      @OA\Property(property="kode", type="string", example="334"),
+     *                      @OA\Property(property="usia", type="integer", example=20),
+     *                      @OA\Property(property="his_adekuat", type="integer", example=null),
+     *                      @OA\Property(property="pergerakan", type="integer", example=null),
+     *                      @OA\Property(property="paritas", type="integer", example=null),
+     *                      @OA\Property(property="alamat", type="integer", example=null),
+     *                      @OA\Property(property="created_at", type="string", example="2023-08-28 20:55:36"),
+     *                      @OA\Property(property="updated_at", type="string", example="2023-08-28 14:51:56"),
+     *                      @OA\Property(property="deleted_at", type="integer", example=null),
      *         )
      *     )
      *      ),
@@ -224,7 +227,7 @@ class RespondenApiController extends Controller
 
     public function show(Responden $responden)
     {
-        // abort_if(Gate::denies('responden_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('responden_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new RespondenResource($responden);
     }
@@ -488,7 +491,7 @@ class RespondenApiController extends Controller
 
     public function destroy(Responden $responden)
     {
-        // abort_if(Gate::denies('responden_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('responden_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $responden->delete();
 

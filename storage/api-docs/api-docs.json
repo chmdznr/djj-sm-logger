@@ -1993,7 +1993,7 @@
                                         },
                                         "errors": {
                                             "properties": {
-                                                "resp_count": {
+                                                "email": {
                                                     "type": "array",
                                                     "items": {
                                                         "type": "string",
@@ -2109,7 +2109,7 @@
                                         },
                                         "errors": {
                                             "properties": {
-                                                "resp_count": {
+                                                "email": {
                                                     "type": "array",
                                                     "items": {
                                                         "type": "string",
@@ -2668,23 +2668,35 @@
                                     "properties": {
                                         "data": {
                                             "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
                                                 "nama": {
                                                     "type": "string",
                                                     "example": "Jimans"
                                                 },
                                                 "kode": {
                                                     "type": "string",
-                                                    "example": "332"
+                                                    "example": "334"
                                                 },
                                                 "usia": {
                                                     "type": "integer",
-                                                    "example": 19
+                                                    "example": 20
+                                                },
+                                                "his_adekuat": {
+                                                    "type": "integer",
+                                                    "example": null
+                                                },
+                                                "pergerakan": {
+                                                    "type": "integer",
+                                                    "example": null
                                                 },
                                                 "paritas": {
                                                     "type": "integer",
                                                     "example": null
                                                 },
-                                                "kardiotografi": {
+                                                "alamat": {
                                                     "type": "integer",
                                                     "example": null
                                                 },
@@ -2694,11 +2706,11 @@
                                                 },
                                                 "updated_at": {
                                                     "type": "string",
-                                                    "example": "2023-08-28 20:55:36"
+                                                    "example": "2023-08-28 14:51:56"
                                                 },
-                                                "id": {
+                                                "deleted_at": {
                                                     "type": "integer",
-                                                    "example": 1
+                                                    "example": null
                                                 }
                                             },
                                             "type": "object"
