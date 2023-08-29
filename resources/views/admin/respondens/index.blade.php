@@ -156,7 +156,7 @@
     { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
-    order: [[ 0, 'desc' ]],
+    order: [[ 1, 'desc' ]],
     pageLength: 100,
   };
   let table = $('.datatable-Responden').DataTable(dtOverrideGlobals);
