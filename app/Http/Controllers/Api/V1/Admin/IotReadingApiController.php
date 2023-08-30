@@ -16,7 +16,7 @@ class IotReadingApiController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/iot-readings",
+     *     path="/api/v1/iot-readings",
      *     summary="Get iot_reading data",
      *     tags={"IOT Reading"},
      *     @OA\Response(response="200", description="Success",
@@ -76,7 +76,7 @@ class IotReadingApiController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/iot-readings",
+     *     path="/api/v1/iot-readings",
      *     summary="Store data for iot reading",
      *     tags={"IOT Reading"},
      *      @OA\Parameter(
@@ -169,7 +169,7 @@ class IotReadingApiController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/iot-readings/{id}",
+     *      path="/api/v1/iot-readings/{id}",
      *      tags={"IOT Reading"},
      *      summary="Get iot_reading by id",
      *      description="Returns project data",
@@ -246,7 +246,7 @@ class IotReadingApiController extends Controller
 
     /**
      * @OA\PathItem(
-     *   path="/iot-readings/{id}",
+     *   path="/api/v1/iot-readings/{id}",
      *  @OA\Put(
      *     tags={"IOT Reading"},
      *     summary="Update data iot_reading",
@@ -349,7 +349,7 @@ class IotReadingApiController extends Controller
      *  ),
      *  @OA\Patch(
      *     tags={"IOT Reading"},
-     *     path="/iot-readings/{id}",
+     *     path="/api/v1/iot-readings/{id}",
      *     summary="Update data iot_reading",
      *     description="Updates an existing iot_reading",
      *     @OA\Parameter(
@@ -460,7 +460,7 @@ class IotReadingApiController extends Controller
     /**
      * @OA\Delete(
      *     tags={"IOT Reading"},
-     *     path="/iot-readings/{id}",
+     *     path="/api/v1/iot-readings/{id}",
      *     summary="Delete data iot_reading",
      *     description="Delete an existing iot_reading by id",
      *     @OA\Parameter(

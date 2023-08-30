@@ -20,7 +20,7 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/register",
+     *     path="/api/v1/register",
      *     summary="Create new user",
      *     tags={"Auth"},
      *      @OA\RequestBody(
@@ -102,7 +102,7 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/login",
+     *     path="/api/v1/login",
      *     summary="Get user and token",
      *     tags={"Auth"},
      *      @OA\RequestBody(
@@ -171,7 +171,7 @@ class AuthController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/revoke",
+     *     path="/api/v1/revoke",
      *     summary="revoke token user",
      *     tags={"Auth"},
      *     @OA\Parameter(

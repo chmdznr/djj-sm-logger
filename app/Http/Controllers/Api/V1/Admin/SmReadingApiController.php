@@ -15,7 +15,7 @@ class SmReadingApiController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/sm-readings",
+     *     path="/api/v1/sm-readings",
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
      *     @OA\Parameter(
@@ -88,7 +88,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/sm-readings",
+     *     path="/api/v1/sm-readings",
      *     summary="Store smarwatch reading data",
      *     tags={"SM Reading"},
      *     @OA\Parameter(
@@ -186,7 +186,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/sm-readings/{id}",
+     *     path="/api/v1/sm-readings/{id}",
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
      *      @OA\Parameter(
@@ -271,7 +271,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\PathItem(
-     *   path="/sm-readings/{id}",
+     *   path="/api/v1/sm-readings/{id}",
      *   @OA\Put(
      *     summary="Get smarwatch reading data",
      *     tags={"SM Reading"},
@@ -485,7 +485,7 @@ class SmReadingApiController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/sm-readings/{id}",
+     *     path="/api/v1/sm-readings/{id}",
      *     summary="Delete smarwatch reading data",
      *     tags={"SM Reading"},
      *      @OA\Parameter(

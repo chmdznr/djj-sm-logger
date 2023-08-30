@@ -7,19 +7,19 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000/api/v1",
+            "url": "http://localhost:8000",
             "description": "Fetal Heart Rate Data Logger"
         }
     ],
     "paths": {
-        "/iot-readings/{id}": {
+        "/api/v1/iot-readings/{id}": {
             "get": {
                 "tags": [
                     "IOT Reading"
                 ],
                 "summary": "Get iot_reading by id",
                 "description": "Returns project data",
-                "operationId": "e4f5586328b1219de2b9d5ebd9de30de",
+                "operationId": "0247bb8659f0eea703ed021c14488178",
                 "parameters": [
                     {
                         "name": "id",
@@ -379,7 +379,7 @@
                 ],
                 "summary": "Delete data iot_reading",
                 "description": "Delete an existing iot_reading by id",
-                "operationId": "392ff11d2a24fa5bdd97e96d00537eeb",
+                "operationId": "996d366731ab5aa9687bd1c0d2553f70",
                 "parameters": [
                     {
                         "name": "id",
@@ -477,7 +477,7 @@
                 ],
                 "summary": "Update data iot_reading",
                 "description": "Updates an existing iot_reading",
-                "operationId": "ebc5239eb9b74cc94a8a1346fe09a7eb",
+                "operationId": "282e3ccb50994d5b382b438850ad9733",
                 "parameters": [
                     {
                         "name": "id",
@@ -659,13 +659,13 @@
                 ]
             }
         },
-        "/respondens/{id}": {
+        "/api/v1/respondens/{id}": {
             "get": {
                 "tags": [
                     "Respondens"
                 ],
                 "summary": "Get respondens data",
-                "operationId": "7ab0caa968146682c489dd22acc6dcd5",
+                "operationId": "2992ad84c4d4d57380bdb6fbf982939d",
                 "parameters": [
                     {
                         "name": "id",
@@ -965,7 +965,7 @@
                     "Respondens"
                 ],
                 "summary": "Delete responden data",
-                "operationId": "c3b46e82440b45307cc16e5d6d2943d5",
+                "operationId": "c9a0647d6d1bf9c148048245cdd5ad42",
                 "parameters": [
                     {
                         "name": "id",
@@ -1209,13 +1209,13 @@
                 ]
             }
         },
-        "/sm-readings/{id}": {
+        "/api/v1/sm-readings/{id}": {
             "get": {
                 "tags": [
                     "SM Reading"
                 ],
                 "summary": "Get smarwatch reading data",
-                "operationId": "0e09f07efd1d75aa75ff17a9350b770b",
+                "operationId": "ccf78e02197f77980dc9cc6ab670c617",
                 "parameters": [
                     {
                         "name": "id",
@@ -1599,7 +1599,7 @@
                     "SM Reading"
                 ],
                 "summary": "Delete smarwatch reading data",
-                "operationId": "1311413131bca64d3d1738a988a11f3f",
+                "operationId": "8a935a009b3804c0b903ba308a476d62",
                 "parameters": [
                     {
                         "name": "id",
@@ -1886,13 +1886,13 @@
                 ]
             }
         },
-        "/register": {
+        "/api/v1/register": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Create new user",
-                "operationId": "4af05e4aa46a15bd7a57ef3b9b2753ad",
+                "operationId": "e9bc55e4ac2eb316f78ed11ec1f0bebb",
                 "requestBody": {
                     "description": "User object",
                     "required": true,
@@ -2012,13 +2012,13 @@
                 }
             }
         },
-        "/login": {
+        "/api/v1/login": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Get user and token",
-                "operationId": "a36942162d35bf1d8557c74ccd63019c",
+                "operationId": "19f9cba2ebce1483f9e61aa83e34206d",
                 "requestBody": {
                     "description": "User object",
                     "required": true,
@@ -2128,13 +2128,13 @@
                 }
             }
         },
-        "/revoke": {
+        "/api/v1/revoke": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "revoke token user",
-                "operationId": "7a47a0700d3453a4f5393817478524ce",
+                "operationId": "1c17a53c822563c52df6d9643f1a472f",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -2183,13 +2183,13 @@
                 ]
             }
         },
-        "/iot-readings": {
+        "/api/v1/iot-readings": {
             "get": {
                 "tags": [
                     "IOT Reading"
                 ],
                 "summary": "Get iot_reading data",
-                "operationId": "885d6aa1afe17dfc08395caea16a9ba3",
+                "operationId": "93be69d5b1c69d244d3bd401d7df534c",
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -2332,7 +2332,7 @@
                     "IOT Reading"
                 ],
                 "summary": "Store data for iot reading",
-                "operationId": "bfaeda5b6d2a9e8b0e74fc9102fa4639",
+                "operationId": "8ca67e7ae4f2d83567f530dacc37c943",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -2488,13 +2488,13 @@
                 ]
             }
         },
-        "/respondens": {
+        "/api/v1/respondens": {
             "get": {
                 "tags": [
                     "Respondens"
                 ],
                 "summary": "Get respondens data",
-                "operationId": "e76ca8f3eea18234dc6e5892e5f67dec",
+                "operationId": "8e5227794d470b4905aa52605db55cbc",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -2603,7 +2603,7 @@
                     "Respondens"
                 ],
                 "summary": "Store data for iot reading",
-                "operationId": "8334166d9fa294a716f749b4d7525aeb",
+                "operationId": "fc85110033c4ad632730615d6d6a0ecb",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -2776,13 +2776,13 @@
                 ]
             }
         },
-        "/sm-readings": {
+        "/api/v1/sm-readings": {
             "get": {
                 "tags": [
                     "SM Reading"
                 ],
                 "summary": "Get smarwatch reading data",
-                "operationId": "6d63d0f24975365327da56e9330eefff",
+                "operationId": "e440ca1ce244b80fa434d97e9d57d721",
                 "parameters": [
                     {
                         "name": "Authorization",
@@ -2945,7 +2945,7 @@
                     "SM Reading"
                 ],
                 "summary": "Store smarwatch reading data",
-                "operationId": "62e97ef29ba844a92b2114c32ac42376",
+                "operationId": "93d4ea17c246831c0487169db30c251a",
                 "parameters": [
                     {
                         "name": "Authorization",

@@ -18,7 +18,7 @@ class RespondenApiController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/respondens",
+     *     path="/api/v1/respondens",
      *     summary="Get respondens data",
      *     tags={"Respondens"},
      *     @OA\Parameter(
@@ -74,7 +74,7 @@ class RespondenApiController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/respondens",
+     *     path="/api/v1/respondens",
      *     summary="Store data for iot reading",
      *     tags={"Respondens"},
      *     @OA\Parameter(
@@ -177,7 +177,7 @@ class RespondenApiController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/respondens/{id}",
+     *     path="/api/v1/respondens/{id}",
      *     summary="Get respondens data",
      *     tags={"Respondens"},
      *      @OA\Parameter(
@@ -234,7 +234,7 @@ class RespondenApiController extends Controller
 
     /**
      * @OA\PathItem(
-     *   path="/respondens/{id}",
+     *   path="/api/v1/respondens/{id}",
      *  @OA\Put(
      *     tags={"Respondens"},
      *     summary="Update data respondens",
@@ -456,7 +456,7 @@ class RespondenApiController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/respondens/{id}",
+     *     path="/api/v1/respondens/{id}",
      *     summary="Delete responden data",
      *     tags={"Respondens"},
      *      @OA\Parameter(
