@@ -193,7 +193,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        // RouteServiceProvider removed in Laravel 11+; routing is declared in bootstrap/app.php.
 
     ],
 

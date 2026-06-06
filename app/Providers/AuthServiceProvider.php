@@ -2,12 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
-
-use App\Models\Role;
-use App\Models\Permission;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -22,20 +17,14 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Register any authentication / authorization services.
+     *
+     * Note: Permission-driven Gate definitions have been moved to
+     * App\Http\Middleware\AuthGates (runs per-request, after auth).
+     * Registering them in boot() here caused a chicken-and-egg failure
+     * before the permissions table existed during first migrate.
      */
     public function boot(): void
     {
         $this->registerPolicies();
-        //
-        $permissions = Permission::all();
-
-        foreach ($permissions as $permission) {
-
-            Gate::define($permission->title, function ($user) use ($permission) {
-                $a = $user->roles()->first()->permissions()->where('title', $permission->title);
-                return is_null($a->first()) ? 0 : 1;
-            });
-
-        }
     }
 }
