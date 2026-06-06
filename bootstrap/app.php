@@ -12,6 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Global middleware (applies to web, api, and any future route group).
+        // SecurityHeaders sets defense-in-depth response headers on every
+        // response — see App\Http\Middleware\SecurityHeaders for the rationale.
+        $middleware->append(\App\Http\Middleware\SecurityHeaders::class);
+
         // Aliases preserved from old app/Http/Kernel.php::$middlewareAliases
         $middleware->alias([
             'auth'             => \App\Http\Middleware\Authenticate::class,
