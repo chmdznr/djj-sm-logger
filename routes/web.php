@@ -9,9 +9,39 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Auth::routes(['register' => false]);
+// Auth::routes() was removed in Laravel 11+. Re-declare the authentication
+// routes manually so the rest of the application can keep depending on them.
+Route::group(['namespace' => 'App\Http\Controllers\Auth'], function () {
+    // Authentication
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout')->name('logout');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    // Registration (disabled, matching the previous ['register' => false] option)
+    // Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+    // Route::post('register', 'RegisterController@register');
+
+    // Password Reset
+    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'ResetPasswordController@reset')->name('password.update');
+
+    // Password Confirmation
+    Route::get('password/confirm', 'ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+    Route::post('password/confirm', 'ConfirmPasswordController@confirm');
+
+    // Email Verification
+    Route::get('email/verify', 'VerificationController@show')->name('verification.notice');
+    Route::get('email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
+    Route::post('email/resend', 'VerificationController@resend')->name('verification.resend');
+
+    // Change password (already present in app, keep behavior)
+    Route::get('password/change', 'ChangePasswordController@showChangePasswordForm')->name('password.change');
+    Route::post('password/change', 'ChangePasswordController@changePassword')->name('password.change.post');
+});
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
@@ -48,7 +78,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 });
-Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'App\Http\Controllers\Auth', 'middleware' => ['auth']], function () {
     // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
         Route::get('password', 'ChangePasswordController@edit')->name('password.edit');

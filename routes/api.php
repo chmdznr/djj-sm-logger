@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin'], function () {
+Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'App\Http\Controllers\Api\V1\Admin'], function () {
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -20,5 +20,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin'], 
 
     // Auth
     Route::post('login', 'AuthController@login');
-    Route::post('register', 'AuthController@register');
+    // Registration disabled (matches web side ['register' => false]).
+    // Self-service user creation is a privilege-escalation vector — admin role
+    // assignment and password policy must be enforced through the admin UI.
+    // Route::post('register', 'AuthController@register');
 });
